@@ -29,16 +29,16 @@ export default function Navbar() {
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-          <Link to="/#probleem" className="hover:text-white transition-colors">Probleem</Link>
-          <Link to="/#systeem" className="hover:text-white transition-colors">Systeem</Link>
-          <Link to="/#garantie" className="hover:text-white transition-colors">Garantie</Link>
-          <Link to="/solutions" className="hover:text-white transition-colors">Oplossingen</Link>
+          <Link to="/#probleem" className="hover:text-white transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950">Probleem</Link>
+          <Link to="/#systeem" className="hover:text-white transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950">Systeem</Link>
+          <Link to="/#garantie" className="hover:text-white transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950">Garantie</Link>
+          <Link to="/solutions" className="hover:text-white transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950">Oplossingen</Link>
         </div>
 
         {/* Desktop CTA */}
         <Link
           to="/get-started"
-          className="hidden md:inline-flex hover:bg-blue-500 transition-all gap-2 items-center btn-glow text-sm font-medium text-white bg-blue-600 rounded-lg pt-2 pr-5 pb-2 pl-5"
+          className="hidden md:inline-flex hover:bg-blue-500 transition-all gap-2 items-center btn-glow text-sm font-medium text-white bg-blue-600 rounded-lg pt-2 pr-5 pb-2 pl-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
         >
           Plan Een Scan
           <Icon icon="solar:arrow-right-linear" width="16" height="16" />
@@ -47,7 +47,7 @@ export default function Navbar() {
         {/* Mobile Menu Toggle */}
         <button
           onClick={toggleMenu}
-          className="md:hidden text-white bg-white/10 p-2 rounded-md hover:bg-white/20 transition-colors"
+          className="md:hidden text-white bg-white/10 p-2 rounded-md hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 min-h-[44px] min-w-[44px] flex items-center justify-center"
           aria-label="Toggle mobile menu"
           aria-expanded={isOpen}
         >

@@ -419,3 +419,33 @@ body {
 .sub-nav-link.active {
   color: white;
 }
+
+/* ---- Cursor ---- */
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/* ---- Focus Visible (keyboard nav) ---- */
+:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.8);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- Glass Card — faster transition (200ms) ---- */
+.glass-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* ---- Reduced Motion — disable all animations ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

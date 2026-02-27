@@ -1,5 +1,7 @@
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 
 export default function GetStarted() {
   return (
@@ -138,19 +140,14 @@ export default function GetStarted() {
               <p className="text-sm text-gray-400 leading-relaxed">Website, CRM, marketing &amp; campagnebeheer — alles wat je nodig hebt om zichtbaar te worden én leads te genereren.</p>
             </div>
             <div className="space-y-3 mb-8 flex-grow">
-              <div className="flex items-start gap-3">
-                <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-sky-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-gray-300">High-speed website of funnel</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-sky-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-gray-300">CRM met contactbeheer &amp; pipeline</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-sky-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-gray-300">Google &amp; Meta campagnebeheer</span>
-              </div>
+              {['High-speed website of funnel', 'CRM met contactbeheer & pipeline', 'Google & Meta campagnebeheer', 'Campagne-optimalisatie & rapportage', 'Automatische lead opvolging (SMS & e-mail)', 'Google Review automatisering', 'Online agenda & boekingssysteem', 'Maandelijks rapport & support'].map((f) => (
+                <div key={f} className="flex items-start gap-3">
+                  <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-sky-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-sm text-gray-300">{f}</span>
+                </div>
+              ))}
             </div>
+            <Link to="/get-started" className="w-full text-center py-3 px-6 rounded-xl text-sm font-medium text-white border border-white/15 hover:bg-white/10 transition-all block cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950">Start met Basis</Link>
           </div>
 
           {/* TIER 2 — GROEI */}
@@ -170,19 +167,14 @@ export default function GetStarted() {
               <p className="text-sm text-gray-400 leading-relaxed">Alles uit Basis + AI-gestuurde marketing, creatieve content en agressievere schaling — gebouwd om sneller te groeien.</p>
             </div>
             <div className="space-y-3 mb-8 flex-grow">
-              <div className="flex items-start gap-3">
-                <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-sky-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-white font-medium">Alles uit Basis, plus:</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-gray-300">AI-gestuurde campagne-optimalisatie</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-gray-300">Creatives &amp; ad-ontwerp inbegrepen</span>
-              </div>
+              {['Alles uit Basis, plus:', 'AI-gestuurde campagne-optimalisatie', 'Creatives & ad-ontwerp inbegrepen', 'Social media contentcreatie & planning', 'Agressieve schaling & A/B testing', 'AI chatbot voor automatische antwoorden', 'Tweewekelijkse strategie-call', 'Onbeperkte website-aanpassingen'].map((f, i) => (
+                <div key={f} className="flex items-start gap-3">
+                  <Icon icon="solar:check-circle-linear" width="18" height="18" className={`${i === 0 ? 'text-sky-400' : 'text-emerald-400'} mt-0.5 flex-shrink-0`} />
+                  <span className={`text-sm ${i === 0 ? 'text-white font-medium' : 'text-gray-300'}`}>{f}</span>
+                </div>
+              ))}
             </div>
+            <Link to="/get-started" className="w-full text-center py-3 px-6 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 transition-all shadow-lg shadow-sky-500/20 block cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950">Start met Groei</Link>
           </div>
 
           {/* TIER 3 — SCHAAL */}
@@ -199,19 +191,14 @@ export default function GetStarted() {
               <p className="text-sm text-gray-400 leading-relaxed">Full-service groeipartner. Wij beheren alles — van strategie tot uitvoering — zodat jij kunt focussen op ondernemen.</p>
             </div>
             <div className="space-y-3 mb-8 flex-grow">
-              <div className="flex items-start gap-3">
-                <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-violet-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-white font-medium">Alles uit Groei, plus:</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-violet-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-gray-300">Dedicated accountmanager</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-violet-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-gray-300">Uitgebreide SEO &amp; contentcreatie</span>
-              </div>
+              {['Alles uit Groei, plus:', 'Dedicated accountmanager', 'Uitgebreide SEO & contentcreatie', 'Maandelijks ROI-rapport met adspend analyse', 'Meerdere funnels & A/B testing', 'Prioriteits-support & wekelijks overleg', 'Custom integraties & automatiseringen'].map((f, i) => (
+                <div key={f} className="flex items-start gap-3">
+                  <Icon icon="solar:check-circle-linear" width="18" height="18" className="text-violet-400 mt-0.5 flex-shrink-0" />
+                  <span className={`text-sm ${i === 0 ? 'text-white font-medium' : 'text-gray-300'}`}>{f}</span>
+                </div>
+              ))}
             </div>
+            <Link to="/get-started" className="w-full text-center py-3 px-6 rounded-xl text-sm font-medium text-white border border-violet-500/30 hover:bg-violet-500/10 transition-all block cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950">Start met Schaal</Link>
           </div>
         </div>
 
@@ -220,6 +207,56 @@ export default function GetStarted() {
             <Icon icon="solar:shield-check-linear" width="14" height="14" className="text-emerald-500" />
             Geen setup kosten • Maandelijks opzegbaar • Adspend niet inbegrepen
           </p>
+        </div>
+      </section>
+
+      {/* Comparison Table */}
+      <section className="md:mt-32 max-w-5xl mt-24 mr-auto ml-auto px-2 pb-16">
+        <div className="text-center mb-14">
+          <p className="uppercase text-xs font-medium text-sky-400 tracking-widest font-mono mb-3">Vergelijking</p>
+          <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight mb-4">Waarom wij anders zijn</h2>
+          <p className="text-gray-400 text-base font-light max-w-lg mx-auto">Stop met betalen voor "mooie" websites die niet verkopen.</p>
+        </div>
+        <div className="relative">
+          <div className="absolute -inset-4 bg-gradient-to-r from-sky-500/30 via-indigo-500/30 to-violet-600/30 rounded-3xl blur-3xl opacity-60 pointer-events-none" aria-hidden="true"></div>
+          <div className="relative overflow-x-auto rounded-xl">
+            <div className="min-w-[780px] rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/30" style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(10px)' }}>
+              <div className="grid border-b border-white/10 bg-white/[0.02]" style={{ gridTemplateColumns: '3fr 2.5fr 2.5fr 2.5fr' }}>
+                <div className="uppercase text-xs font-medium text-gray-400 tracking-wider font-mono py-5 px-5">Feature</div>
+                <div className="py-5 px-4 text-center"><span className="text-xs font-medium tracking-wider text-gray-300 uppercase font-mono">Pushly Basis</span></div>
+                <div className="py-5 px-4 text-center" style={{ background: 'rgba(56,189,248,0.04)' }}><span className="text-xs font-medium tracking-wider text-sky-300 uppercase font-mono">Pushly Groei</span></div>
+                <div className="py-5 px-4 text-center text-xs font-medium tracking-wider text-gray-400 uppercase font-mono">Traditioneel Bureau</div>
+              </div>
+              {[
+                { label: 'Maandelijkse Kosten', basis: '€297/mnd', groei: '€497/mnd', trad: '€3.000 – €8.000/mnd', bc: 'text-emerald-400', gc: 'text-emerald-400', tc: 'text-gray-400' },
+                { label: 'Eenmalige Setup', basis: '€0', groei: '€0', trad: '€3.000 – €5.000+', bc: 'text-emerald-400', gc: 'text-emerald-400', tc: 'text-gray-400' },
+                { label: 'Paginasnelheid', basis: '99/100', groei: '99/100', trad: 'Vaak Traag (Wordpress)', bc: 'text-white', gc: 'text-white', tc: 'text-gray-400' },
+                { label: 'Review Automatisering', basis: 'check', groei: 'check', trad: 'cross', bc: '', gc: '', tc: '' },
+                { label: 'Advertentiebeheer', basis: 'Campagnebeheer', groei: '+ AI-optimalisatie', trad: '€500+ extra/mnd', bc: 'text-white', gc: 'text-white font-medium', tc: 'text-gray-400' },
+                { label: 'Creatives & Content', basis: 'cross', groei: 'check', trad: '€300+/stuk', bc: '', gc: '', tc: 'text-gray-400' },
+                { label: 'Doorlopende Support', basis: 'Maandelijks', groei: 'Onbeperkt', trad: 'Uurtarief (€100+/uur)', bc: 'text-white', gc: 'text-white font-medium', tc: 'text-gray-400' },
+                { label: 'Focus', basis: 'Leads & Zichtbaarheid', groei: 'Schaling & Omzet', trad: 'Alleen Design', bc: 'text-sky-400 font-medium', gc: 'text-sky-400 font-medium', tc: 'text-gray-400' },
+              ].map((row, idx) => (
+                <div key={row.label} className={`grid hover:bg-white/[0.04] transition-colors group ${idx < 7 ? 'border-b border-white/5' : ''}`} style={{ gridTemplateColumns: '3fr 2.5fr 2.5fr 2.5fr' }}>
+                  <div className="py-5 px-5 font-medium text-sm text-white group-hover:text-sky-200 transition-colors">{row.label}</div>
+                  <div className="py-5 px-4 flex items-center justify-center">
+                    {row.basis === 'check' ? <div className="w-6 h-6 rounded-full bg-sky-500/20 border border-sky-500/40 flex items-center justify-center"><Icon icon="solar:check-circle-linear" width="16" height="16" className="text-sky-400" /></div>
+                      : row.basis === 'cross' ? <div className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"><Icon icon="solar:close-circle-linear" width="16" height="16" className="text-gray-500" /></div>
+                        : <span className={`text-sm ${row.bc}`}>{row.basis}</span>}
+                  </div>
+                  <div className="py-5 px-4 flex items-center justify-center" style={{ background: 'rgba(56,189,248,0.04)' }}>
+                    {row.groei === 'check' ? <div className="w-6 h-6 rounded-full bg-sky-500/20 border border-sky-500/40 flex items-center justify-center"><Icon icon="solar:check-circle-linear" width="16" height="16" className="text-sky-400" /></div>
+                      : row.groei === 'cross' ? <div className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"><Icon icon="solar:close-circle-linear" width="16" height="16" className="text-gray-500" /></div>
+                        : <span className={`text-sm ${row.gc}`}>{row.groei}</span>}
+                  </div>
+                  <div className="py-5 px-4 flex items-center justify-center">
+                    {row.trad === 'cross' ? <div className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"><Icon icon="solar:close-circle-linear" width="16" height="16" className="text-gray-500" /></div>
+                      : <span className={`text-sm text-center ${row.tc}`}>{row.trad}</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

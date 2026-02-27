@@ -1,20 +1,75 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Pushly APP — Dev Quick Reference
 
-# Run and deploy your AI Studio app
+## Start the dev server
 
-This contains everything you need to run your app locally.
+```bash
+cd "Site-files PROD/Pushly APP"
+npm run dev
+```
 
-View your app in AI Studio: https://ai.studio/apps/afc813fb-b97e-4ac7-ae6f-1199593b77f0
+Opens at **http://localhost:3000**
 
-## Run Locally
+---
 
-**Prerequisites:**  Node.js
+## Stop the server
 
+In the terminal where it's running: **Ctrl + C**
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+If you closed the terminal and it's still running:
+
+```bash
+# Find and kill the process on port 3000
+lsof -i :3000
+kill <PID>
+```
+
+Or kill all Vite instances at once:
+
+```bash
+pkill -f vite
+```
+
+---
+
+## Check if it's running
+
+```bash
+lsof -i :3000
+```
+
+- Output with a `node` process → **running**
+- No output → **not running**
+
+---
+
+## Why am I seeing localhost:3001?
+
+If port 3000 is already taken (e.g. you started `npm run dev` twice), Vite automatically picks the next free port (3001, 3002, ...). Kill the duplicate with `pkill -f vite`, then restart once.
+
+---
+
+## Build for production
+
+```bash
+npm run build
+```
+
+Output goes to `dist/`. Preview the build locally:
+
+```bash
+npm run preview
+```
+
+---
+
+## Project structure
+
+```
+src/
+  pages/       → Home, About, Solutions, GetStarted, PrivacyPolicy, TermsConditions
+  components/  → Navbar, Footer, Layout
+  index.css    → Global styles & animations
+  main.tsx     → App entry point
+```
+
+> **Source of truth for content:** Static HTML files in `Site-files PROD/` (index.html, about.html, solutions.html, etc.)

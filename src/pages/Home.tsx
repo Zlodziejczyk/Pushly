@@ -5,6 +5,28 @@ import { motion } from 'framer-motion';
 
 export default function Home() {
   useEffect(() => {
+    // Unicorn Studio Background
+    const initUnicorn = () => {
+      const studio = (window as any).UnicornStudio;
+      if (studio?.init) studio.init();
+    };
+
+    if (!document.querySelector('script[src*="unicornStudio"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js';
+      script.onload = initUnicorn;
+      document.head.appendChild(script);
+    } else {
+      initUnicorn();
+    }
+
+    return () => {
+      const studio = (window as any).UnicornStudio;
+      if (studio?.destroy) studio.destroy();
+    };
+  }, []);
+
+  useEffect(() => {
     // Counter Animation Logic
     const counterEl = document.getElementById('counter-display');
     let counterAnimated = false;
@@ -56,12 +78,85 @@ export default function Home() {
     <>
       {/* Ambient Particle System */}
       <div id="ambient-particles" aria-hidden="true" style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 1, overflow: 'hidden' }}>
+
+        {/* Rising Particles — 20 dots floating upward */}
         <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(96,165,250,0.7)', bottom: '-10px', left: '5%', animation: 'riseParticle 8s linear 0s infinite' }}></div>
         <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.6)', bottom: '-10px', left: '12%', animation: 'riseParticle 10s linear 1.5s infinite' }}></div>
         <div className="rising-particle" style={{ width: '4px', height: '4px', background: 'rgba(96,165,250,0.5)', bottom: '-10px', left: '22%', animation: 'riseParticleSlow 14s linear 0.5s infinite' }}></div>
         <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(147,197,253,0.7)', bottom: '-10px', left: '30%', animation: 'riseParticle 9s linear 3s infinite' }}></div>
         <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(56,189,248,0.5)', bottom: '-10px', left: '40%', animation: 'riseParticleSlow 12s linear 2s infinite' }}></div>
         <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.8)', bottom: '-10px', left: '48%', animation: 'riseParticle 7s linear 4s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(147,197,253,0.4)', bottom: '-10px', left: '55%', animation: 'riseParticleSlow 15s linear 1s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.7)', bottom: '-10px', left: '65%', animation: 'riseParticle 11s linear 2.5s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '4px', height: '4px', background: 'rgba(96,165,250,0.4)', bottom: '-10px', left: '72%', animation: 'riseParticle 9s linear 5s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(147,197,253,0.6)', bottom: '-10px', left: '80%', animation: 'riseParticleSlow 13s linear 0.8s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(56,189,248,0.5)', bottom: '-10px', left: '88%', animation: 'riseParticle 10s linear 3.5s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.7)', bottom: '-10px', left: '95%', animation: 'riseParticleSlow 11s linear 6s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(234,179,8,0.4)', bottom: '-10px', left: '18%', animation: 'riseParticle 13s linear 4.5s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(234,179,8,0.3)', bottom: '-10px', left: '52%', animation: 'riseParticleSlow 16s linear 7s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(167,139,250,0.5)', bottom: '-10px', left: '35%', animation: 'riseParticle 12s linear 1.2s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(52,211,153,0.4)', bottom: '-10px', left: '60%', animation: 'riseParticleSlow 14s linear 3.8s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.6)', bottom: '-10px', left: '8%', animation: 'riseParticle 8.5s linear 5.5s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(56,189,248,0.4)', bottom: '-10px', left: '75%', animation: 'riseParticle 9.5s linear 2.8s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(147,197,253,0.5)', bottom: '-10px', left: '42%', animation: 'riseParticleSlow 11.5s linear 6.5s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '4px', height: '4px', background: 'rgba(96,165,250,0.3)', bottom: '-10px', left: '92%', animation: 'riseParticle 15s linear 0.3s infinite' }}></div>
+
+        {/* Orbiting Dot Clusters */}
+        <div style={{ position: 'fixed', top: '15%', left: '15%', width: 0, height: 0 }}>
+          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(96,165,250,0.7)', animation: 'orbit1 12s linear infinite' }}></div>
+          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.5)', animation: 'orbit3 8s linear 1s infinite' }}></div>
+        </div>
+        <div style={{ position: 'fixed', top: '20%', right: '15%', width: 0, height: 0 }}>
+          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(147,197,253,0.6)', animation: 'orbit2 15s linear 2s infinite' }}></div>
+          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.5)', animation: 'orbit4 10s linear infinite' }}></div>
+        </div>
+        <div style={{ position: 'fixed', top: '50%', left: '50%', width: 0, height: 0 }}>
+          <div className="orbiting-dot" style={{ width: '4px', height: '4px', background: 'rgba(56,189,248,0.4)', animation: 'orbit5 20s linear 3s infinite' }}></div>
+          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(234,179,8,0.35)', animation: 'orbit6 14s linear 1.5s infinite' }}></div>
+          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(96,165,250,0.5)', animation: 'orbit7 25s linear infinite' }}></div>
+        </div>
+        <div style={{ position: 'fixed', bottom: '25%', left: '20%', width: 0, height: 0 }}>
+          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(52,211,153,0.5)', animation: 'orbit1 9s linear 4s infinite' }}></div>
+          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(96,165,250,0.6)', animation: 'orbit8 7s linear infinite' }}></div>
+        </div>
+        <div style={{ position: 'fixed', bottom: '20%', right: '20%', width: 0, height: 0 }}>
+          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(167,139,250,0.5)', animation: 'orbit2 11s linear 2.5s infinite' }}></div>
+          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.6)', animation: 'orbit4 16s linear 5s infinite' }}></div>
+        </div>
+        <div style={{ position: 'fixed', top: '40%', left: '8%', width: 0, height: 0 }}>
+          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.7)', animation: 'orbit3 13s linear 3.5s infinite' }}></div>
+          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(56,189,248,0.4)', animation: 'orbit6 18s linear 1s infinite' }}></div>
+        </div>
+        <div style={{ position: 'fixed', top: '55%', right: '10%', width: 0, height: 0 }}>
+          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(147,197,253,0.5)', animation: 'orbit5 10s linear 4.5s infinite' }}></div>
+          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(96,165,250,0.4)', animation: 'orbit8 22s linear 2s infinite' }}></div>
+        </div>
+        <div style={{ position: 'fixed', top: '5%', left: '45%', width: 0, height: 0 }}>
+          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.6)', animation: 'orbit1 17s linear 6s infinite' }}></div>
+        </div>
+
+        {/* Static Twinkling Particles */}
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.6)', position: 'fixed', top: '25%', left: '28%', animation: 'twinkle 3s ease-in-out infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.5)', position: 'fixed', top: '60%', left: '70%', animation: 'twinkle 4s ease-in-out 1s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(147,197,253,0.4)', position: 'fixed', top: '75%', left: '15%', animation: 'twinkle 3.5s ease-in-out 2s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.5)', position: 'fixed', top: '10%', left: '82%', animation: 'twinkle 5s ease-in-out 0.5s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(234,179,8,0.3)', position: 'fixed', top: '85%', left: '55%', animation: 'twinkle 4.5s ease-in-out 3s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(52,211,153,0.3)', position: 'fixed', top: '38%', left: '90%', animation: 'twinkle 3.8s ease-in-out 1.5s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.6)', position: 'fixed', top: '50%', left: '5%', animation: 'twinkle 4.2s ease-in-out 2.5s infinite' }}></div>
+        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(167,139,250,0.4)', position: 'fixed', top: '70%', left: '40%', animation: 'twinkle 3.2s ease-in-out 4s infinite' }}></div>
+      </div>
+
+      {/* Unicorn Studio Background */}
+      <div
+        className="top-0 w-full h-screen -z-10 absolute"
+        style={{
+          maskImage: 'linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)',
+        }}
+      >
+        <div className="top-0 w-full -z-10 absolute h-full">
+          <div data-us-project="FixNvEwvWwbu3QX9qC3F" className="absolute w-full h-full left-0 top-0 -z-10"></div>
+        </div>
       </div>
 
       {/* Hero Section */}
@@ -113,7 +208,7 @@ export default function Home() {
               >
                 <Link
                   to="/get-started"
-                  className="sm:w-auto hover:bg-blue-500 transition-all flex gap-2 btn-glow items-center justify-center font-medium text-white bg-blue-600 w-full rounded-lg pt-3.5 pr-8 pb-3.5 pl-8"
+                  className="sm:w-auto hover:bg-blue-500 transition-all flex gap-2 btn-glow items-center justify-center font-medium text-white bg-blue-600 w-full rounded-lg pt-3.5 pr-8 pb-3.5 pl-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
                 >
                   Bespreek De Mogelijkheden
                   <Icon icon="solar:arrow-right-linear" width="20" height="20" />
@@ -172,6 +267,27 @@ export default function Home() {
                         <div className="text-[10px] text-gray-400">11:00 – 11:45</div>
                       </div>
                     </div>
+                    <div className="flex items-center gap-3 bg-purple-500/10 border border-purple-500/20 rounded-lg p-2.5">
+                      <div className="w-1 h-8 bg-purple-500 rounded-full flex-shrink-0"></div>
+                      <div>
+                        <div className="text-xs font-medium text-white">Tom — Offerte badkamer</div>
+                        <div className="text-[10px] text-gray-400">13:00 – 14:00</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 bg-gray-800/50 border border-gray-700 rounded-lg p-2.5">
+                      <div className="w-1 h-8 bg-yellow-500 rounded-full flex-shrink-0"></div>
+                      <div>
+                        <div className="text-xs font-medium text-gray-300">Anna — Lekkage spoed</div>
+                        <div className="text-[10px] text-gray-400">15:30 – 16:30</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 bg-gray-800/50 border border-gray-700 rounded-lg p-2.5 opacity-50">
+                      <div className="w-1 h-8 bg-gray-600 rounded-full flex-shrink-0"></div>
+                      <div>
+                        <div className="text-xs font-medium text-gray-400">Mark — Inspectie CV</div>
+                        <div className="text-[10px] text-gray-500">17:00 – 17:30</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -191,6 +307,7 @@ export default function Home() {
                           </div>
                         </div>
 
+                        {/* Notification: New Lead */}
                         <motion.div
                           animate={{ y: [0, -5, 0], scale: [1, 1.02, 1] }}
                           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -211,6 +328,54 @@ export default function Home() {
                             </div>
                           </div>
                         </motion.div>
+
+                        {/* Notification: New Review */}
+                        <div className="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-3 mb-4">
+                          <div className="flex items-start gap-2.5">
+                            <div className="w-8 h-8 rounded-lg bg-yellow-600 flex items-center justify-center flex-shrink-0">
+                              <Icon icon="solar:star-bold" width="16" height="16" className="text-white" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex justify-between items-start">
+                                <span className="text-[10px] font-semibold text-white">Nieuwe Review</span>
+                                <span className="text-[8px] text-gray-400">2m</span>
+                              </div>
+                              <p className="text-[9px] text-gray-300 mt-0.5">
+                                ⭐⭐⭐⭐⭐ "Fantastische service!"
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Notification: Appointment Confirmed */}
+                        <div className="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-3 mb-4 opacity-70">
+                          <div className="flex items-start gap-2.5">
+                            <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center flex-shrink-0">
+                              <Icon icon="solar:calendar-check-linear" width="16" height="16" className="text-white" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex justify-between items-start">
+                                <span className="text-[10px] font-semibold text-white">Afspraak Bevestigd</span>
+                                <span className="text-[8px] text-gray-400">15m</span>
+                              </div>
+                              <p className="text-[9px] text-gray-300 mt-0.5">
+                                Tom B. komt morgen om 14:00 langs.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Quick Stats */}
+                        <div className="grid grid-cols-2 gap-2 mt-2">
+                          <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-2.5 text-center">
+                            <div className="text-sm font-bold text-white">18</div>
+                            <div className="text-[8px] text-gray-500 uppercase tracking-wider">Afspraken</div>
+                          </div>
+                          <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-2.5 text-center">
+                            <div className="text-sm font-bold text-emerald-400">4.9★</div>
+                            <div className="text-[8px] text-gray-500 uppercase tracking-wider">Reviews</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -892,7 +1057,7 @@ export default function Home() {
 
           <Link
             to="/get-started"
-            className="hover:bg-blue-500 transition-all text-lg font-semibold text-white bg-blue-600 rounded-full py-4 px-12 btn-glow shadow-2xl shadow-blue-600/20 inline-flex items-center gap-3"
+            className="hover:bg-blue-500 transition-all text-lg font-semibold text-white bg-blue-600 rounded-full py-4 px-12 btn-glow shadow-2xl shadow-blue-600/20 inline-flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
           >
             Start De Samenwerking
             <Icon icon="solar:arrow-right-linear" width="22" height="22" />

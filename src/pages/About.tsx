@@ -134,6 +134,140 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* Comparison Table */}
+      <section className="md:mt-32 max-w-5xl mt-24 mr-auto ml-auto px-2">
+        <div className="text-center mb-14">
+          <p className="uppercase text-xs font-medium text-sky-400 tracking-widest font-mono mb-3">Vergelijking</p>
+          <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight mb-4">Waarom wij anders zijn</h2>
+          <p className="text-gray-400 text-base md:text-lg font-light max-w-lg mx-auto">Stop met betalen voor "mooie" websites die niet verkopen.</p>
+        </div>
+        <div className="relative">
+          <div className="absolute -inset-4 bg-gradient-to-r from-sky-500/30 via-indigo-500/30 to-violet-600/30 rounded-3xl blur-3xl opacity-60 pointer-events-none" aria-hidden="true"></div>
+          <div className="relative overflow-x-auto rounded-xl">
+            <div className="min-w-[780px] rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/30" style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(10px)' }}>
+              {/* Table Header */}
+              <div className="grid border-b border-white/10 bg-white/[0.02]" style={{ gridTemplateColumns: '3fr 2.5fr 2.5fr 2.5fr' }}>
+                <div className="uppercase text-xs font-medium text-gray-400 tracking-wider font-mono py-5 px-5">Feature</div>
+                <div className="py-5 px-4 text-center"><span className="text-xs font-medium tracking-wider text-gray-300 uppercase font-mono">Pushly Basis</span></div>
+                <div className="py-5 px-4 text-center" style={{ background: 'rgba(56,189,248,0.04)' }}><span className="text-xs font-medium tracking-wider text-sky-300 uppercase font-mono">Pushly Groei</span></div>
+                <div className="py-5 px-4 text-center text-xs font-medium tracking-wider text-gray-400 uppercase font-mono">Traditioneel Bureau</div>
+              </div>
+              {[
+                { label: 'Maandelijkse Kosten', basis: '€297/mnd', groei: '€497/mnd', trad: '€3.000 – €8.000/mnd', basisColor: 'text-emerald-400', groeiColor: 'text-emerald-400', tradColor: 'text-gray-400' },
+                { label: 'Eenmalige Setup', basis: '€0', groei: '€0', trad: '€3.000 – €5.000+', basisColor: 'text-emerald-400', groeiColor: 'text-emerald-400', tradColor: 'text-gray-400' },
+                { label: 'Paginasnelheid', basis: '99/100', groei: '99/100', trad: 'Vaak Traag (Wordpress)', basisColor: 'text-white', groeiColor: 'text-white', tradColor: 'text-gray-400' },
+                { label: 'Review Automatisering', basis: 'check', groei: 'check', trad: 'cross', basisColor: '', groeiColor: '', tradColor: '' },
+                { label: 'Advertentiebeheer', basis: 'Campagnebeheer', groei: '+ AI-optimalisatie', trad: '€500+ extra/mnd', basisColor: 'text-white', groeiColor: 'text-white font-medium', tradColor: 'text-gray-400' },
+                { label: 'Creatives & Content', basis: 'cross', groei: 'check', trad: '€300+/stuk', basisColor: '', groeiColor: '', tradColor: 'text-gray-400' },
+                { label: 'Doorlopende Support', basis: 'Maandelijks', groei: 'Onbeperkt', trad: 'Uurtarief (€100+/uur)', basisColor: 'text-white', groeiColor: 'text-white font-medium', tradColor: 'text-gray-400' },
+                { label: 'Focus', basis: 'Leads & Zichtbaarheid', groei: 'Schaling & Omzet', trad: 'Alleen Design', basisColor: 'text-sky-400 font-medium', groeiColor: 'text-sky-400 font-medium', tradColor: 'text-gray-400' },
+              ].map((row, idx) => (
+                <div key={row.label} className={`grid hover:bg-white/[0.04] transition-colors group ${idx < 7 ? 'border-b border-white/5' : ''}`} style={{ gridTemplateColumns: '3fr 2.5fr 2.5fr 2.5fr' }}>
+                  <div className="py-5 px-5 font-medium text-sm text-white group-hover:text-sky-200 transition-colors">{row.label}</div>
+                  <div className="py-5 px-4 flex items-center justify-center">
+                    {row.basis === 'check' ? <div className="w-6 h-6 rounded-full bg-sky-500/20 border border-sky-500/40 flex items-center justify-center"><Icon icon="solar:check-circle-linear" width="16" height="16" className="text-sky-400" /></div>
+                      : row.basis === 'cross' ? <div className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"><Icon icon="solar:close-circle-linear" width="16" height="16" className="text-gray-500" /></div>
+                        : <span className={`text-sm ${row.basisColor}`}>{row.basis}</span>}
+                  </div>
+                  <div className="py-5 px-4 flex items-center justify-center" style={{ background: 'rgba(56,189,248,0.04)' }}>
+                    {row.groei === 'check' ? <div className="w-6 h-6 rounded-full bg-sky-500/20 border border-sky-500/40 flex items-center justify-center"><Icon icon="solar:check-circle-linear" width="16" height="16" className="text-sky-400" /></div>
+                      : row.groei === 'cross' ? <div className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"><Icon icon="solar:close-circle-linear" width="16" height="16" className="text-gray-500" /></div>
+                        : <span className={`text-sm ${row.groeiColor}`}>{row.groei}</span>}
+                  </div>
+                  <div className="py-5 px-4 flex items-center justify-center">
+                    {row.trad === 'cross' ? <div className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"><Icon icon="solar:close-circle-linear" width="16" height="16" className="text-gray-500" /></div>
+                      : <span className={`text-sm text-center ${row.tradColor}`}>{row.trad}</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-24 bg-gray-950 border-t border-gray-900 mt-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Loved by locals.</h2>
+              <p className="text-gray-400 max-w-lg">Local businesses trust us to improve their online presence. Here's what they're saying.</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex -space-x-3">
+                <img className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="User" />
+                <img className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64" alt="User" />
+                <img className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&h=64" alt="User" />
+              </div>
+              <div className="text-sm text-gray-400">
+                <span className="text-white font-bold">5.0</span> from 50+ reviews
+              </div>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { quote: '"From day one the process has been smooth, easy, and honestly stress free."', name: 'Cleanure Laundry', role: 'Owner', avatar: 'CL' },
+              { quote: '"Super simple throughout the entire process."', name: 'Sean B.', role: 'Pearl Pressure Washing', avatar: null, img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=64&h=64' },
+              { quote: '"Professional, fast, and they actually answer the phone. Most agencies I\'ve worked with ghost you after the sale. The PUSHLY team treats my business like it\'s their own."', name: 'Mike Kowalski', role: 'Kowalski Auto Detailing', avatar: 'MK', avatarBg: 'bg-blue-900', avatarColor: 'text-blue-300' },
+            ].map((review) => (
+              <motion.div
+                key={review.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="glass-card rounded-xl p-6"
+              >
+                <div className="flex gap-1 text-yellow-400 mb-4">
+                  {[...Array(5)].map((_, i) => <Icon key={i} icon="solar:star-bold" className="w-4 h-4" />)}
+                </div>
+                <p className="leading-relaxed text-sm text-gray-300 mb-6">{review.quote}</p>
+                <div className="flex items-center gap-3">
+                  {review.img ? (
+                    <img src={review.img} className="w-10 h-10 object-cover rounded-full" alt={review.name} />
+                  ) : (
+                    <div className={`w-10 h-10 ${review.avatarBg || 'bg-gray-800'} rounded-full flex items-center justify-center font-bold ${review.avatarColor || 'text-gray-400'}`}>{review.avatar}</div>
+                  )}
+                  <div>
+                    <div className="text-sm font-medium text-white">{review.name}</div>
+                    <div className="text-xs text-gray-500">{review.role}</div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-gray-950 border-t border-gray-900 relative">
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <div className="bg-gray-950/80 backdrop-blur-sm border border-white/5 rounded-3xl p-8 md:p-16 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
+            <div className="text-center mb-12 relative z-10">
+              <h2 className="text-3xl font-semibold text-white tracking-tight mb-4">Common Questions</h2>
+              <p className="text-gray-400">Everything you need to know about working with us.</p>
+            </div>
+            <div className="space-y-3 relative z-10">
+              {[
+                { q: 'Why should I choose Pushly over a big agency?', a: 'Big agencies are slow and expensive. We specialize in fast turnaround, local-focused results, and hands-on support. You get direct access to the people actually doing the work.' },
+                { q: 'What kind of businesses do you work with?', a: 'We partner with service-based businesses that rely on local customers — contractors, home services, med spas, real estate pros, auto shops, and more. If people search for you on Google, we can help you win more of those searches.' },
+                { q: 'Do I have to sign a long-term contract?', a: 'We offer both monthly and annual plans. We believe in earning your business every month, so we don\'t lock you into multi-year contracts you can\'t get out of.' },
+              ].map((faq) => (
+                <details key={faq.q} className="group bg-gray-900/50 border border-white/5 rounded-lg overflow-hidden">
+                  <summary className="flex cursor-pointer hover:bg-white/5 transition-colors select-none font-medium text-white p-4 items-center justify-between list-none [&::-webkit-details-marker]:hidden">
+                    <span>{faq.q}</span>
+                    <span className="transition-transform duration-300 group-open:rotate-180 text-gray-500">
+                      <Icon icon="solar:alt-arrow-down-linear" width="16" height="16" />
+                    </span>
+                  </summary>
+                  <div className="px-4 pb-4 pt-4 text-gray-400 text-sm leading-relaxed border-t border-white/5">{faq.a}</div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
