@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
@@ -14,15 +13,12 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-}
-
-.bg-grid {
-  background-size: 48px 48px;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+/* ---- Gradient Text Utilities ---- */
+.text-gradient {
+  background: linear-gradient(to bottom right, #ffffff 30%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-blue {
@@ -32,6 +28,23 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
+/* ---- Grid Background ---- */
+.bg-grid {
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+/* ---- Glass Panel (HTML style) ---- */
+.glass-panel {
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.7) 0%, rgba(17, 24, 39, 0.4) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ---- Glass Card (APP style) ---- */
 .glass-card {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
@@ -43,74 +56,188 @@ h1, h2, h3, h4, h5, h6 {
 .glass-card:hover {
   border-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-4px);
-  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
 }
 
+/* ---- CTA Button Glow ---- */
 .btn-glow {
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px -5px rgba(59, 130, 246, 0.4), 0 0 40px -10px rgba(59, 130, 246, 0.2);
   }
+
   50% {
     box-shadow: 0 0 30px -5px rgba(59, 130, 246, 0.6), 0 0 60px -10px rgba(59, 130, 246, 0.3);
   }
 }
 
+/* ---- Badge Glow ---- */
 .badge-glow {
   animation: badgePulse 2.5s ease-in-out infinite;
 }
 
 @keyframes badgePulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.5);
     border-color: rgba(56, 189, 248, 0.2);
   }
+
   50% {
     box-shadow: 0 0 0 12px rgba(56, 189, 248, 0);
     border-color: rgba(56, 189, 248, 0.8);
   }
 }
 
+/* ---- Float Animation ---- */
+.float-animation {
+  animation: floatAnim 6s ease-in-out infinite;
+}
+
+@keyframes floatAnim {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotateY(-5deg) rotateX(5deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotateY(-5deg) rotateX(5deg);
+  }
+}
+
+/* ---- Guarantee Shimmer ---- */
+.guarantee-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.guarantee-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.06), transparent);
+  animation: shimmerSweep 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-100%) rotate(15deg);
+  }
+
+  100% {
+    transform: translateX(200%) rotate(15deg);
+  }
+}
+
+/* ---- Counter Pulse ---- */
+.counter-pulse {
+  animation: countPulse 2s ease-in-out infinite;
+}
+
+@keyframes countPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* ---- Notification Bounce ---- */
+.notif-bounce {
+  animation: notifBounce 3s ease-in-out infinite;
+}
+
+@keyframes notifBounce {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-5px) scale(1.02);
+  }
+}
+
+/* ---- Phone Perspective ---- */
+.phone-perspective {
+  perspective: 1000px;
+}
+
+/* ---- Zigzag Hover Glow ---- */
+.zigzag-graphic {
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.zigzag-row:hover .zigzag-graphic {
+  box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* ---- Bounce Arrow ---- */
+.bounce-arrow {
+  animation: bounceDown 2s ease-in-out infinite;
+}
+
+@keyframes bounceDown {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* ---- Glow Pulse No Scale ---- */
 .glow-pulse-noscale {
   animation: subtlePulseNoscale 4s ease-in-out infinite;
 }
 
 @keyframes subtlePulseNoscale {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.15;
   }
+
   50% {
     opacity: 0.85;
   }
 }
 
-.float-animation {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
+/* ---- Particle System ---- */
 @keyframes riseParticle {
   0% {
     opacity: 0;
     transform: translateY(0) scale(0.5);
   }
+
   10% {
     opacity: 1;
   }
+
   90% {
     opacity: 0.6;
   }
+
   100% {
     opacity: 0;
     transform: translateY(-100vh) scale(0.2);
@@ -122,12 +249,15 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
     transform: translateY(0) scale(0.4);
   }
+
   15% {
     opacity: 0.8;
   }
+
   85% {
     opacity: 0.4;
   }
+
   100% {
     opacity: 0;
     transform: translateY(-110vh) scale(0.1);
@@ -141,19 +271,151 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1;
 }
 
+/* ---- Orbiting Dots ---- */
+.orbiting-dot {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes orbit1 {
+  0% {
+    transform: rotate(0deg) translateX(120px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit2 {
+  0% {
+    transform: rotate(0deg) translateX(180px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg) translateX(180px) rotate(360deg);
+  }
+}
+
+@keyframes orbit3 {
+  0% {
+    transform: rotate(0deg) translateX(90px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(90px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit4 {
+  0% {
+    transform: rotate(0deg) translateX(150px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg) translateX(150px) rotate(360deg);
+  }
+}
+
+@keyframes orbit5 {
+  0% {
+    transform: rotate(0deg) translateX(200px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(200px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit6 {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg) translateX(100px) rotate(360deg);
+  }
+}
+
+@keyframes orbit7 {
+  0% {
+    transform: rotate(0deg) translateX(250px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(250px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit8 {
+  0% {
+    transform: rotate(0deg) translateX(70px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg) translateX(70px) rotate(360deg);
+  }
+}
+
+/* ---- Expansion Rings ---- */
+.expansion-ring {
+  position: fixed;
+  border-radius: 50%;
+  border: 1px solid;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes expandRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes expandRingSlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(5);
+    opacity: 0;
+  }
+}
+
+/* ---- Twinkle ---- */
 @keyframes twinkle {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
   }
+
   50% {
     opacity: 1;
   }
 }
 
+/* ---- Scrollbar Hide ---- */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ---- Sub-Nav Link Active ---- */
+.sub-nav-link.active {
+  color: white;
 }

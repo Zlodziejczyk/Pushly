@@ -270,6 +270,24 @@ export default function Home() {
                     <p className="text-sm text-gray-400 leading-relaxed">Na een volle werkdag nog handmatig leads opvolgen die inmiddels al verder zijn.</p>
                   </div>
                 </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 flex-shrink-0 mt-0.5 border border-red-500/20">
+                    <Icon icon="solar:close-circle-linear" width="14" height="14" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium text-white mb-1">Kansen Die Weglopen</h4>
+                    <p className="text-sm text-gray-400 leading-relaxed">Wie niet direct bereikbaar is, verliest de lead aan de concurrent die dat wél is.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 flex-shrink-0 mt-0.5 border border-red-500/20">
+                    <Icon icon="solar:close-circle-linear" width="14" height="14" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium text-white mb-1">Onvoorspelbare Planning</h4>
+                    <p className="text-sm text-gray-400 leading-relaxed">Een agenda die afwisselt tussen te druk en te leeg, zonder grip op de instroom.</p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -301,6 +319,331 @@ export default function Home() {
                     <p className="text-sm text-gray-400 leading-relaxed">Elke gemiste oproep wordt automatisch beantwoord — de lead blijft warm, ook als jij bezig bent.</p>
                   </div>
                 </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 flex-shrink-0 mt-0.5 border border-emerald-500/20">
+                    <Icon icon="solar:check-circle-linear" width="14" height="14" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium text-white mb-1">Intelligente Nurturing</h4>
+                    <p className="text-sm text-gray-400 leading-relaxed">Leads worden automatisch gefilterd en opgewarmd via persoonlijke opvolgberichten.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 flex-shrink-0 mt-0.5 border border-emerald-500/20">
+                    <Icon icon="solar:check-circle-linear" width="14" height="14" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium text-white mb-1">Een Agenda Die Zich Vult</h4>
+                    <p className="text-sm text-gray-400 leading-relaxed">Gekwalificeerde afspraken verschijnen in je planning, zonder dat jij iets hoeft te doen.</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Systeem / 3-Pijler Section */}
+      <section id="systeem" className="md:py-32 bg-gray-950 border-gray-900 border-t pt-24 pb-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <div className="inline-flex gap-2 text-xs font-medium text-blue-300 bg-blue-500/10 border border-blue-500/20 rounded-full mb-6 py-1 px-3 items-center">
+              Zo Werken Wij
+            </div>
+            <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-6 leading-tight max-w-3xl mx-auto">
+              Drie Pijlers
+              <br />
+              <span className="text-gradient-blue">Eén Groeimotor.</span>
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Geen complexe funnels of marketingjargon. Wij ontwerpen een samenhangende digitale infrastructuur die structureel resultaat oplevert.
+            </p>
+          </motion.div>
+
+          {/* Zig-Zag Row 1: Text Left, Graphic Right — Aantrekken */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24 md:mb-32">
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-600/30">1</div>
+                <div className="h-px bg-gray-800 flex-1"></div>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-semibold text-white tracking-tight mb-4">Aantrekken</h3>
+              <p className="text-gray-400 text-lg leading-relaxed mb-6">
+                Eerste indrukken tellen. Wij ontwerpen landingspagina's die niet alleen mooi zijn, maar converteren. Snel, helder en gebouwd om vertrouwen te wekken.
+              </p>
+              <p className="text-gray-500 leading-relaxed">
+                Zodra een bezoeker interest toont, worden hun gegevens naadloos vastgelegd.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="relative bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="h-10 bg-gray-950 border-b border-gray-800 flex items-center px-4 gap-2">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                  </div>
+                  <div className="flex text-[10px] text-gray-500 font-mono bg-gray-800 h-5 rounded-md mx-auto px-6 items-center">
+                    pushly.nl/get-started
+                  </div>
+                </div>
+                <div className="p-6 md:p-8 bg-gray-900/50 relative">
+                  <div className="mb-6">
+                    <div className="h-3 bg-gray-800 rounded w-3/4 mb-2"></div>
+                    <div className="h-3 bg-gray-800 rounded w-1/2 mb-6"></div>
+                    <div className="h-2 bg-gray-800/50 rounded w-full mb-1"></div>
+                    <div className="h-2 bg-gray-800/50 rounded w-5/6"></div>
+                  </div>
+                  <div className="bg-gray-950 border border-gray-700 rounded-xl p-5">
+                    <h4 className="text-sm font-medium text-white mb-4 flex items-center gap-2">
+                      <Icon icon="solar:clipboard-text-linear" width="16" height="16" className="text-blue-400" />
+                      Vraag Direct Een Offerte Aan
+                    </h4>
+                    <div className="space-y-3">
+                      <div className="bg-gray-800 border border-gray-700 rounded-lg p-2.5 flex items-center gap-2">
+                        <Icon icon="solar:user-linear" width="14" height="14" className="text-gray-500" />
+                        <span className="text-xs text-gray-400">Je naam</span>
+                      </div>
+                      <div className="bg-gray-800 border border-gray-700 rounded-lg p-2.5 flex items-center gap-2">
+                        <Icon icon="solar:phone-linear" width="14" height="14" className="text-gray-500" />
+                        <span className="text-xs text-gray-400">Telefoonnummer</span>
+                      </div>
+                      <div className="bg-gray-800 border border-gray-700 rounded-lg p-2.5 flex items-center gap-2">
+                        <Icon icon="solar:letter-linear" width="14" height="14" className="text-gray-500" />
+                        <span className="text-xs text-gray-400">E-mailadres</span>
+                      </div>
+                      <div className="w-full bg-blue-600 text-white text-xs font-medium py-2.5 rounded-lg text-center">
+                        Verstuur Aanvraag →
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-6 right-6 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-600/30" aria-hidden="true">
+                    <Icon icon="solar:chat-round-dots-linear" width="22" height="22" className="text-white" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Zig-Zag Row 2: Graphic Left, Text Right — Opvolgen */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24 md:mb-32">
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-last lg:order-first"
+            >
+              <div className="relative bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl p-6 md:p-8">
+                <div className="text-center mb-6">
+                  <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Automated Flow</span>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 flex-shrink-0">
+                      <Icon icon="solar:phone-calling-rounded-linear" width="24" height="24" />
+                    </div>
+                    <div className="flex-1 bg-gray-800/50 border border-gray-700 rounded-lg p-3">
+                      <div className="text-xs font-medium text-white">Gemiste Oproep</div>
+                      <div className="text-[10px] text-gray-400">+31 6 12 345 678 • 14:32</div>
+                    </div>
+                    <div className="text-red-400">
+                      <Icon icon="solar:phone-calling-rounded-linear" width="18" height="18" />
+                    </div>
+                  </div>
+                  <div className="flex justify-center text-gray-700" aria-hidden="true">
+                    <Icon icon="solar:arrow-down-linear" width="20" height="20" />
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0">
+                      <Icon icon="solar:chat-round-dots-linear" width="24" height="24" />
+                    </div>
+                    <div className="flex-1 bg-blue-500/10 border border-blue-500/20 rounded-lg p-3">
+                      <div className="text-xs font-medium text-white flex items-center gap-1">
+                        Auto SMS Verstuurd
+                        <span className="text-[8px] bg-blue-600 text-white px-1.5 py-0.5 rounded-full uppercase tracking-wider font-bold">instant</span>
+                      </div>
+                      <div className="text-[10px] text-blue-300 mt-1">"Hoi! Ik ben even bezig met een klus. Hoe kan ik je helpen?"</div>
+                    </div>
+                  </div>
+                  <div className="flex justify-center text-gray-700" aria-hidden="true">
+                    <Icon icon="solar:arrow-down-linear" width="20" height="20" />
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                      <Icon icon="solar:chat-round-check-linear" width="24" height="24" />
+                    </div>
+                    <div className="flex-1 bg-gray-800/50 border border-gray-700 rounded-lg p-3">
+                      <div className="text-xs font-medium text-white">Klant Reageert</div>
+                      <div className="text-[10px] text-gray-400 mt-1">"Ik zoek een loodgieter voor een lekkage. Wanneer kan je komen?"</div>
+                    </div>
+                  </div>
+                  <div className="flex justify-center text-gray-700" aria-hidden="true">
+                    <Icon icon="solar:arrow-down-linear" width="20" height="20" />
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                      <Icon icon="solar:calendar-check-linear" width="24" height="24" />
+                    </div>
+                    <div className="flex-1 bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+                      <div className="text-xs font-medium text-white flex items-center gap-1">
+                        Afspraak Ingepland
+                        <Icon icon="solar:check-circle-bold" width="14" height="14" className="text-emerald-400" />
+                      </div>
+                      <div className="text-[10px] text-emerald-300 mt-1">Morgen 15:30 — Automatisch in je agenda</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-600/30">2</div>
+                <div className="h-px bg-gray-800 flex-1"></div>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-semibold text-white tracking-tight mb-4">Opvolgen</h3>
+              <p className="text-gray-400 text-lg leading-relaxed mb-6">
+                Snelheid bepaalt wie de klant wint. Ons systeem vangt elke gemiste oproep op met een persoonlijk geautomatiseerd bericht — nog voordat de lead verder zoekt.
+              </p>
+              <p className="text-gray-500 leading-relaxed">
+                Daarna volgt intelligente opwarming via sms en e-mail. Geen lead blijft onbeantwoord.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Zig-Zag Row 3: Text Left, Graphic Right — Converteren */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-600/30">3</div>
+                <div className="h-px bg-gray-800 flex-1"></div>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-semibold text-white tracking-tight mb-4">Converteren</h3>
+              <p className="text-gray-400 text-lg leading-relaxed mb-6">
+                Warme leads boeken zelf een afspraak in jouw gesynchroniseerde agenda. Geen heen-en-weer, geen administratie.
+              </p>
+              <p className="text-gray-500 leading-relaxed">
+                Na afloop vraagt het systeem automatisch om een Google review. Zo groeit je online reputatie mee met je bedrijf.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="relative bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl p-6 md:p-8">
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-sm font-medium text-white flex items-center gap-2">
+                      <Icon icon="solar:calendar-linear" width="16" height="16" className="text-blue-400" />
+                      Agenda — Deze Week
+                    </h4>
+                    <span className="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-2 py-0.5 font-medium">96% Bezet</span>
+                  </div>
+                  <div className="grid grid-cols-5 gap-1">
+                    <div className="text-center">
+                      <div className="text-[9px] text-gray-500 mb-1">Ma</div>
+                      <div className="h-16 bg-blue-500/20 border border-blue-500/10 rounded-lg flex items-center justify-center">
+                        <div className="w-1.5 h-10 bg-blue-500 rounded-full"></div>
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[9px] text-gray-500 mb-1">Di</div>
+                      <div className="h-16 bg-blue-500/20 border border-blue-500/10 rounded-lg flex items-center justify-center">
+                        <div className="w-1.5 h-12 bg-blue-500 rounded-full"></div>
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[9px] text-gray-500 mb-1">Wo</div>
+                      <div className="h-16 bg-emerald-500/20 border border-emerald-500/10 rounded-lg flex items-center justify-center">
+                        <div className="w-1.5 h-14 bg-emerald-500 rounded-full"></div>
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[9px] text-gray-500 mb-1">Do</div>
+                      <div className="h-16 bg-blue-500/20 border border-blue-500/10 rounded-lg flex items-center justify-center">
+                        <div className="w-1.5 h-11 bg-blue-500 rounded-full"></div>
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[9px] text-gray-500 mb-1">Vr</div>
+                      <div className="h-16 bg-gray-800/50 border border-gray-700 rounded-lg flex items-center justify-center">
+                        <div className="w-1.5 h-6 bg-gray-600 rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="h-px bg-gray-800 my-5"></div>
+                <div>
+                  <h4 className="text-sm font-medium text-white flex items-center gap-2 mb-4">
+                    <Icon icon="solar:star-linear" width="16" height="16" className="text-yellow-500" />
+                    Recente Reviews
+                  </h4>
+                  <div className="space-y-3">
+                    <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-3 flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">PB</div>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-start">
+                          <span className="text-xs font-medium text-white">Pieter Bakker</span>
+                          <span className="text-yellow-500 text-[10px]">★★★★★</span>
+                        </div>
+                        <p className="text-[10px] text-gray-400 mt-0.5">"Snel geholpen, uitstekende service. Zeker een aanrader!"</p>
+                        <div className="flex items-center gap-1 mt-1">
+                          <Icon icon="logos:google-icon" width="10" height="10" />
+                          <span className="text-[8px] text-gray-500">Google Review • 2 uur geleden</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-3 flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">SV</div>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-start">
+                          <span className="text-xs font-medium text-white">Sophie de Vries</span>
+                          <span className="text-yellow-500 text-[10px]">★★★★★</span>
+                        </div>
+                        <p className="text-[10px] text-gray-400 mt-0.5">"Alles perfect geregeld. Top communicatie!"</p>
+                        <div className="flex items-center gap-1 mt-1">
+                          <Icon icon="logos:google-icon" width="10" height="10" />
+                          <span className="text-[8px] text-gray-500">Google Review • 5 uur geleden</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 flex items-center gap-2 bg-yellow-500/5 border border-yellow-500/10 rounded-lg p-2.5">
+                    <Icon icon="solar:magic-stick-3-linear" width="16" height="16" className="text-yellow-500" />
+                    <span className="text-[10px] text-yellow-400">Automatische review-verzoek verstuurd naar 3 klanten vandaag</span>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -330,6 +673,29 @@ export default function Home() {
           <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
             Ons systeem plaatst gekwalificeerde afspraken direct in je agenda. Geen handmatig nabellen, geen giswerk. Reken op een structurele groei van <strong className="text-white">10 tot 20 bevestigde afspraken per maand</strong> — consistent en voorspelbaar.
           </p>
+
+          {/* Weekly Progress Bars */}
+          <div className="mt-12 max-w-lg mx-auto grid grid-cols-4 gap-3">
+            {[
+              { label: 'Week 1', height: '30%', color: 'bg-blue-600/30' },
+              { label: 'Week 2', height: '50%', color: 'bg-blue-600/40' },
+              { label: 'Week 3', height: '75%', color: 'bg-blue-600/50' },
+              { label: 'Week 4', height: '95%', color: 'bg-blue-500', glow: true },
+            ].map((bar, i) => (
+              <div key={bar.label} className="text-center">
+                <div className="h-20 bg-gray-800/50 rounded-lg flex items-end overflow-hidden">
+                  <motion.div
+                    className={`w-full ${bar.color} rounded-t-sm${bar.glow ? ' shadow-[0_0_15px_rgba(59,130,246,0.4)]' : ''}`}
+                    initial={{ height: '0%' }}
+                    whileInView={{ height: bar.height }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.8, delay: i * 0.2, ease: 'easeOut' }}
+                  />
+                </div>
+                <span className="text-[10px] text-gray-500 mt-2 block">{bar.label}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </section>
 
@@ -341,7 +707,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative rounded-3xl overflow-hidden"
+            className="relative guarantee-shimmer rounded-3xl overflow-hidden"
             style={{ background: 'linear-gradient(135deg, rgba(17,24,39,0.9) 0%, rgba(17,24,39,0.7) 100%)', border: '2px solid rgba(234,179,8,0.25)', boxShadow: '0 0 60px -20px rgba(234,179,8,0.1), inset 0 1px 0 rgba(255,255,255,0.05)' }}
           >
             <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, #eab308, transparent)' }}></div>
@@ -359,8 +725,26 @@ export default function Home() {
 
               <div className="bg-gray-900/50 border border-yellow-500/10 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto">
                 <p className="text-gray-300 leading-relaxed">
-                  Als ons systeem binnen de eerste <strong className="text-white">30 dagen</strong> niet zorgt voor een meetbare stijging in gekwalificeerde aanvragen of afspraken, storten we onze management fee <strong className="text-white">direct terug</strong>.
+                  Als ons systeem binnen de eerste <strong className="text-white">30 dagen</strong> niet zorgt voor een meetbare stijging in gekwalificeerde aanvragen of afspraken, storten we onze management fee <strong className="text-white">direct terug</strong>. Of we werken kosteloos door totdat we dat resultaat wél behalen. <strong className="text-white">Jij beslist.</strong>
                 </p>
+                <div className="mt-4 pt-4 border-t border-gray-800">
+                  <p className="text-sm text-gray-500">Geen kleine lettertjes. Gewoon een partner die levert.</p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+                <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                  <Icon icon="solar:check-circle-linear" width="14" height="14" style={{ color: '#eab308' }} />
+                  30 dagen geld-terug
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                  <Icon icon="solar:check-circle-linear" width="14" height="14" style={{ color: '#eab308' }} />
+                  Maandelijks opzegbaar
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                  <Icon icon="solar:check-circle-linear" width="14" height="14" style={{ color: '#eab308' }} />
+                  Geen verborgen kosten
+                </div>
               </div>
             </div>
           </motion.div>
@@ -486,8 +870,12 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="z-10 text-center max-w-3xl mr-auto ml-auto pr-6 pl-6 relative"
+          className="z-10 reveal text-center max-w-3xl mr-auto ml-auto pr-6 pl-6 relative"
         >
+          <div className="mb-8 bounce-arrow inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 bg-gray-900/50 text-gray-500" aria-hidden="true">
+            <Icon icon="solar:arrow-down-linear" width="20" height="20" />
+          </div>
+
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight mb-6 leading-tight">
             Klaar Om Te Groeien?
             <br />
@@ -495,7 +883,11 @@ export default function Home() {
           </h2>
 
           <p className="text-lg text-gray-400 mb-6 leading-relaxed max-w-2xl mx-auto">
-            Jij focust op je vak. Wij zorgen dat de rest meegroeit — van leadgeneratie tot opvolging, van afspraken tot reputatie.
+            Jij focust op je vak. Wij zorgen dat de rest meegroeit — van leadgeneratie tot opvolging, van afspraken tot reputatie. Samen bouwen we aan jouw digitale fundament.
+          </p>
+
+          <p className="text-base text-gray-500 mb-10 max-w-xl mx-auto">
+            Eén gesprek. Geen verplichtingen. Ontdek wat er mogelijk is.
           </p>
 
           <Link
@@ -505,6 +897,8 @@ export default function Home() {
             Start De Samenwerking
             <Icon icon="solar:arrow-right-linear" width="22" height="22" />
           </Link>
+
+          <p className="mt-6 text-xs text-gray-600">Vrijblijvend • Persoonlijk • Binnen 24 uur reactie</p>
         </motion.div>
       </section>
     </>
