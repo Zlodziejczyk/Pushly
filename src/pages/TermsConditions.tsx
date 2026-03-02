@@ -1,4 +1,12 @@
+import { usePageMeta } from '../hooks/usePageMeta';
+
 export default function TermsConditions() {
+  usePageMeta({
+    title: 'Algemene Voorwaarden | Pushly',
+    description: 'De servicevoorwaarden en gebruiksregels van Pushly. Maandelijks opzegbaar, geen verborgen kosten.',
+    canonical: 'https://www.pushly.nl/terms-conditions',
+  });
+
   return (
     <main className="flex-grow pt-32 pb-24 relative z-10">
       <div className="max-w-3xl mx-auto px-6">

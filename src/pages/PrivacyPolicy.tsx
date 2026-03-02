@@ -1,4 +1,12 @@
+import { usePageMeta } from '../hooks/usePageMeta';
+
 export default function PrivacyPolicy() {
+  usePageMeta({
+    title: 'Privacybeleid | Pushly',
+    description: 'Lees hoe Pushly omgaat met jouw persoonsgegevens, SMS-communicatie en cookiebeleid conform de AVG.',
+    canonical: 'https://www.pushly.nl/privacy-policy',
+  });
+
   return (
     <main className="flex-grow pt-32 pb-24 relative z-10">
       <div className="max-w-3xl mx-auto px-6">

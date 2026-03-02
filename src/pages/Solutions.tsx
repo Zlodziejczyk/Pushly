@@ -1,23 +1,89 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
+import { usePageMeta } from '../hooks/usePageMeta';
+import { useJsonLd } from '../hooks/useJsonLd';
+
+const SOLUTIONS_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': 'https://www.pushly.nl/solutions',
+  url: 'https://www.pushly.nl/solutions',
+  name: 'Oplossingen — Websites, Marketing & Automatisering | Pushly',
+  description: 'Meer aanvragen, minder weggegooid budget. Websites, marketing en automatisering voor het Nederlandse MKB.',
+  inLanguage: 'nl-NL',
+  isPartOf: { '@id': 'https://www.pushly.nl/#website' },
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.pushly.nl' },
+      { '@type': 'ListItem', position: 2, name: 'Oplossingen', item: 'https://www.pushly.nl/solutions' },
+    ],
+  },
+  mainEntity: [
+    {
+      '@type': 'Service',
+      name: 'Basis Pakket',
+      description: 'Website, CRM, marketing en campagnebeheer — alles wat je nodig hebt om zichtbaar te worden en leads te genereren.',
+      provider: { '@id': 'https://www.pushly.nl/#organization' },
+      areaServed: { '@type': 'Country', name: 'Nederland' },
+      offers: { '@type': 'Offer', price: '297', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+    },
+    {
+      '@type': 'Service',
+      name: 'Groei Pakket',
+      description: 'Alles uit Basis plus AI-gestuurde marketing, creatieve content en agressievere schaling.',
+      provider: { '@id': 'https://www.pushly.nl/#organization' },
+      areaServed: { '@type': 'Country', name: 'Nederland' },
+      offers: { '@type': 'Offer', price: '497', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+    },
+    {
+      '@type': 'Service',
+      name: 'Schaal Pakket',
+      description: 'Full-service groeipartner. Wij beheren alles — van strategie tot uitvoering.',
+      provider: { '@id': 'https://www.pushly.nl/#organization' },
+      areaServed: { '@type': 'Country', name: 'Nederland' },
+      offers: { '@type': 'Offer', price: '797', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+    },
+  ],
+};
 
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
-  const top = el.getBoundingClientRect().top + window.pageYOffset - 108;
+  const navbarHeight = document.querySelector('header')?.offsetHeight ?? 64;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 44 - 8;
   window.scrollTo({ top, behavior: 'smooth' });
 }
 
 export default function Solutions() {
+  usePageMeta({
+    title: 'Oplossingen — Marketing & Automatisering voor MKB | Pushly',
+    description: 'Van high-speed websites tot AI-gestuurde advertentiecampagnes. Basis vanaf €297/mnd, maandelijks opzegbaar, geen verborgen kosten.',
+    canonical: 'https://www.pushly.nl/solutions',
+  });
+  useJsonLd('solutions-schema', SOLUTIONS_SCHEMA);
+
+  const [navbarHeight, setNavbarHeight] = useState(64);
+
+  useEffect(() => {
+    const updateNavHeight = () => {
+      const h = document.querySelector('header')?.offsetHeight ?? 64;
+      setNavbarHeight(h);
+    };
+    updateNavHeight();
+    window.addEventListener('resize', updateNavHeight);
+    return () => window.removeEventListener('resize', updateNavHeight);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const stickySubnav = document.getElementById('sticky-subnav');
       const heroSection = document.getElementById('hero-section');
       if (!heroSection || !stickySubnav) return;
       const heroBottom = heroSection.getBoundingClientRect().bottom;
-      if (heroBottom < 64) {
+      if (heroBottom < navbarHeight) {
         stickySubnav.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
         stickySubnav.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
       } else {
@@ -28,12 +94,12 @@ export default function Solutions() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navbarHeight]);
 
   return (
     <>
       {/* Sticky Sub-Nav */}
-      <div id="sticky-subnav" className="fixed z-40 top-16 left-0 right-0 transition-all duration-300 opacity-0 -translate-y-2 pointer-events-none" style={{ background: 'rgba(3,7,18,0.9)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+      <div id="sticky-subnav" className="fixed z-40 left-0 right-0 transition-all duration-300 opacity-0 -translate-y-2 pointer-events-none" style={{ top: `${navbarHeight}px`, background: 'rgba(3,7,18,0.9)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-6 h-11 overflow-x-auto hide-scrollbar whitespace-nowrap">
             <button onClick={() => scrollToSection('websites')} className="sub-nav-link cursor-pointer text-xs font-medium text-gray-400 hover:text-white flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
@@ -214,13 +280,13 @@ export default function Solutions() {
 
                       {/* Form */}
                       <div className="bg-white/[0.03] border border-white/10 rounded-lg p-3 space-y-2.5 text-left">
-                        <div className="text-[9px] font-medium text-white mb-1">Vraag gratis een offerte aan</div>
+                        <div className="text-[11px] font-medium text-white mb-1">Vraag gratis een offerte aan</div>
                         <div className="flex gap-2">
                           <div className="flex-1 h-7 rounded bg-black/40 border border-white/10 flex items-center px-2.5">
-                            <span className="text-[9px] text-gray-500">Jouw naam</span>
+                            <span className="text-[11px] text-gray-500">Jouw naam</span>
                           </div>
                           <div className="flex-1 h-7 rounded bg-black/40 border border-white/10 flex items-center px-2.5">
-                            <span className="text-[9px] text-gray-500">Telefoon</span>
+                            <span className="text-[11px] text-gray-500">Telefoon</span>
                           </div>
                         </div>
                         <button className="w-full h-8 rounded bg-blue-600 text-[10px] font-medium text-white flex items-center justify-center gap-1.5" style={{ boxShadow: '0 0 15px -3px rgba(37,99,235,0.4)' }}>

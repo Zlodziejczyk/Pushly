@@ -2,28 +2,90 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
+import ParticleSystem from '../components/ParticleSystem';
+import { usePageMeta } from '../hooks/usePageMeta';
+import { useJsonLd } from '../hooks/useJsonLd';
+
+const HOME_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': 'https://www.pushly.nl/#business',
+  name: 'Pushly',
+  url: 'https://www.pushly.nl',
+  description: 'Wij zijn een digitaal bureau dat groeisystemen ontwerpt voor ambitieuze MKB-ondernemers. Meer afspraken, sterkere reputatie, minder handwerk.',
+  priceRange: '€€',
+  areaServed: { '@type': 'Country', name: 'Nederland' },
+  taxID: 'NL005217421B14',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5.0',
+    reviewCount: '50',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  review: [
+    {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      author: { '@type': 'Organization', name: 'Cleanure Laundry' },
+      reviewBody: 'From day one the process has been smooth, easy, and honestly stress free.',
+    },
+    {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      author: { '@type': 'Person', name: 'Sean B.' },
+      reviewBody: 'Super simple throughout the entire process.',
+    },
+    {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      author: { '@type': 'Person', name: 'Mike Kowalski' },
+      reviewBody: 'Professional, fast, and they actually answer the phone. Most agencies I\'ve worked with ghost you after the sale. The PUSHLY team treats my business like it\'s their own.',
+    },
+  ],
+};
 
 export default function Home() {
+  usePageMeta({
+    title: 'Pushly — Digitale Groei voor het MKB',
+    description: 'Wij bouwen groeisystemen voor ambitieuze MKB-ondernemers. Meer afspraken, sterkere reputatie, minder handwerk. 30 dagen geld-terug garantie.',
+    canonical: 'https://www.pushly.nl/',
+  });
+  useJsonLd('home-schema', HOME_SCHEMA);
+
   useEffect(() => {
-    // Unicorn Studio Background
-    const initUnicorn = () => {
-      const studio = (window as any).UnicornStudio;
-      if (studio?.init) studio.init();
+    // Unicorn Studio Background — deferred until after LCP via requestIdleCallback
+    const load = () => {
+      const initUnicorn = () => {
+        const studio = (window as any).UnicornStudio;
+        if (studio?.init) studio.init();
+      };
+
+      if (!document.querySelector('script[src*="unicornStudio"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js';
+        script.onload = initUnicorn;
+        document.head.appendChild(script);
+      } else {
+        initUnicorn();
+      }
     };
 
-    if (!document.querySelector('script[src*="unicornStudio"]')) {
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js';
-      script.onload = initUnicorn;
-      document.head.appendChild(script);
+    if ('requestIdleCallback' in window) {
+      const id = (window as any).requestIdleCallback(load, { timeout: 3000 });
+      return () => {
+        (window as any).cancelIdleCallback(id);
+        const studio = (window as any).UnicornStudio;
+        if (studio?.destroy) studio.destroy();
+      };
     } else {
-      initUnicorn();
+      const t = setTimeout(load, 500);
+      return () => {
+        clearTimeout(t);
+        const studio = (window as any).UnicornStudio;
+        if (studio?.destroy) studio.destroy();
+      };
     }
-
-    return () => {
-      const studio = (window as any).UnicornStudio;
-      if (studio?.destroy) studio.destroy();
-    };
   }, []);
 
   useEffect(() => {
@@ -76,75 +138,7 @@ export default function Home() {
 
   return (
     <>
-      {/* Ambient Particle System */}
-      <div id="ambient-particles" aria-hidden="true" style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 1, overflow: 'hidden' }}>
-
-        {/* Rising Particles — 20 dots floating upward */}
-        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(96,165,250,0.7)', bottom: '-10px', left: '5%', animation: 'riseParticle 8s linear 0s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.6)', bottom: '-10px', left: '12%', animation: 'riseParticle 10s linear 1.5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '4px', height: '4px', background: 'rgba(96,165,250,0.5)', bottom: '-10px', left: '22%', animation: 'riseParticleSlow 14s linear 0.5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(147,197,253,0.7)', bottom: '-10px', left: '30%', animation: 'riseParticle 9s linear 3s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(56,189,248,0.5)', bottom: '-10px', left: '40%', animation: 'riseParticleSlow 12s linear 2s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.8)', bottom: '-10px', left: '48%', animation: 'riseParticle 7s linear 4s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(147,197,253,0.4)', bottom: '-10px', left: '55%', animation: 'riseParticleSlow 15s linear 1s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.7)', bottom: '-10px', left: '65%', animation: 'riseParticle 11s linear 2.5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '4px', height: '4px', background: 'rgba(96,165,250,0.4)', bottom: '-10px', left: '72%', animation: 'riseParticle 9s linear 5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(147,197,253,0.6)', bottom: '-10px', left: '80%', animation: 'riseParticleSlow 13s linear 0.8s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(56,189,248,0.5)', bottom: '-10px', left: '88%', animation: 'riseParticle 10s linear 3.5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.7)', bottom: '-10px', left: '95%', animation: 'riseParticleSlow 11s linear 6s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(234,179,8,0.4)', bottom: '-10px', left: '18%', animation: 'riseParticle 13s linear 4.5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(234,179,8,0.3)', bottom: '-10px', left: '52%', animation: 'riseParticleSlow 16s linear 7s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(167,139,250,0.5)', bottom: '-10px', left: '35%', animation: 'riseParticle 12s linear 1.2s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(52,211,153,0.4)', bottom: '-10px', left: '60%', animation: 'riseParticleSlow 14s linear 3.8s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.6)', bottom: '-10px', left: '8%', animation: 'riseParticle 8.5s linear 5.5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(56,189,248,0.4)', bottom: '-10px', left: '75%', animation: 'riseParticle 9.5s linear 2.8s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(147,197,253,0.5)', bottom: '-10px', left: '42%', animation: 'riseParticleSlow 11.5s linear 6.5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '4px', height: '4px', background: 'rgba(96,165,250,0.3)', bottom: '-10px', left: '92%', animation: 'riseParticle 15s linear 0.3s infinite' }}></div>
-
-        {/* Orbiting Dot Clusters */}
-        <div style={{ position: 'fixed', top: '15%', left: '15%', width: 0, height: 0 }}>
-          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(96,165,250,0.7)', animation: 'orbit1 12s linear infinite' }}></div>
-          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.5)', animation: 'orbit3 8s linear 1s infinite' }}></div>
-        </div>
-        <div style={{ position: 'fixed', top: '20%', right: '15%', width: 0, height: 0 }}>
-          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(147,197,253,0.6)', animation: 'orbit2 15s linear 2s infinite' }}></div>
-          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.5)', animation: 'orbit4 10s linear infinite' }}></div>
-        </div>
-        <div style={{ position: 'fixed', top: '50%', left: '50%', width: 0, height: 0 }}>
-          <div className="orbiting-dot" style={{ width: '4px', height: '4px', background: 'rgba(56,189,248,0.4)', animation: 'orbit5 20s linear 3s infinite' }}></div>
-          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(234,179,8,0.35)', animation: 'orbit6 14s linear 1.5s infinite' }}></div>
-          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(96,165,250,0.5)', animation: 'orbit7 25s linear infinite' }}></div>
-        </div>
-        <div style={{ position: 'fixed', bottom: '25%', left: '20%', width: 0, height: 0 }}>
-          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(52,211,153,0.5)', animation: 'orbit1 9s linear 4s infinite' }}></div>
-          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(96,165,250,0.6)', animation: 'orbit8 7s linear infinite' }}></div>
-        </div>
-        <div style={{ position: 'fixed', bottom: '20%', right: '20%', width: 0, height: 0 }}>
-          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(167,139,250,0.5)', animation: 'orbit2 11s linear 2.5s infinite' }}></div>
-          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.6)', animation: 'orbit4 16s linear 5s infinite' }}></div>
-        </div>
-        <div style={{ position: 'fixed', top: '40%', left: '8%', width: 0, height: 0 }}>
-          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.7)', animation: 'orbit3 13s linear 3.5s infinite' }}></div>
-          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(56,189,248,0.4)', animation: 'orbit6 18s linear 1s infinite' }}></div>
-        </div>
-        <div style={{ position: 'fixed', top: '55%', right: '10%', width: 0, height: 0 }}>
-          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(147,197,253,0.5)', animation: 'orbit5 10s linear 4.5s infinite' }}></div>
-          <div className="orbiting-dot" style={{ width: '3px', height: '3px', background: 'rgba(96,165,250,0.4)', animation: 'orbit8 22s linear 2s infinite' }}></div>
-        </div>
-        <div style={{ position: 'fixed', top: '5%', left: '45%', width: 0, height: 0 }}>
-          <div className="orbiting-dot" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.6)', animation: 'orbit1 17s linear 6s infinite' }}></div>
-        </div>
-
-        {/* Static Twinkling Particles */}
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.6)', position: 'fixed', top: '25%', left: '28%', animation: 'twinkle 3s ease-in-out infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(56,189,248,0.5)', position: 'fixed', top: '60%', left: '70%', animation: 'twinkle 4s ease-in-out 1s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(147,197,253,0.4)', position: 'fixed', top: '75%', left: '15%', animation: 'twinkle 3.5s ease-in-out 2s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.5)', position: 'fixed', top: '10%', left: '82%', animation: 'twinkle 5s ease-in-out 0.5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(234,179,8,0.3)', position: 'fixed', top: '85%', left: '55%', animation: 'twinkle 4.5s ease-in-out 3s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '3px', height: '3px', background: 'rgba(52,211,153,0.3)', position: 'fixed', top: '38%', left: '90%', animation: 'twinkle 3.8s ease-in-out 1.5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(96,165,250,0.6)', position: 'fixed', top: '50%', left: '5%', animation: 'twinkle 4.2s ease-in-out 2.5s infinite' }}></div>
-        <div className="rising-particle" style={{ width: '2px', height: '2px', background: 'rgba(167,139,250,0.4)', position: 'fixed', top: '70%', left: '40%', animation: 'twinkle 3.2s ease-in-out 4s infinite' }}></div>
-      </div>
+      <ParticleSystem />
 
       {/* Unicorn Studio Background */}
       <div
@@ -174,16 +168,16 @@ export default function Home() {
                 className="inline-flex gap-2 text-xs font-medium text-blue-300 bg-blue-500/10 border-blue-500/20 border rounded-full mb-8 py-1 px-3 items-center backdrop-blur-md"
               >
                 Digitaal Bureau voor Groeiend MKB
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative flex h-2 w-2" aria-hidden="true">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" style={{ animationIterationCount: 3 }}></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                 </span>
               </motion.div>
 
               <motion.h1
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={{ duration: 0.6 }}
                 className="md:text-5xl lg:text-6xl leading-[1.1] text-4xl font-semibold text-white tracking-tight mb-6"
               >
                 Wij Bouwen
@@ -925,8 +919,8 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Loved by locals.</h2>
-              <p className="text-gray-400 max-w-lg">Local businesses trust us to improve their online presence. Here's what they're saying.</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Wat Onze Klanten Zeggen</h2>
+              <p className="text-gray-400 max-w-lg">Lokale ondernemers vertrouwen op Pushly om hun online aanwezigheid te verbeteren. Dit zeggen zij.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 30 }}
@@ -935,12 +929,12 @@ export default function Home() {
               className="flex items-center gap-2"
             >
               <div className="flex -space-x-3">
-                <img className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="User" />
-                <img className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64" alt="User" />
-                <img className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&h=64" alt="User" />
+                <img width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="Klant avatar" />
+                <img width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64" alt="Klant avatar" />
+                <img width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&h=64" alt="Klant avatar" />
               </div>
               <div className="text-sm text-gray-400">
-                <span className="text-white font-bold">5.0</span> from 50+ reviews
+                <span className="text-white font-bold">5.0</span> uit 50+ beoordelingen
               </div>
             </motion.div>
           </div>
@@ -963,7 +957,7 @@ export default function Home() {
               </div>
               <p className="leading-relaxed text-sm text-gray-300 mb-6">"From day one the process has been smooth, easy, and honestly stress free."</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 font-bold">CL</div>
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Cleanure" alt="Cleanure Laundry" width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border border-white/10 bg-gray-800" />
                 <div>
                   <div className="text-sm font-medium text-white">Cleanure Laundry</div>
                   <div className="text-xs text-gray-500">Owner</div>
@@ -988,7 +982,7 @@ export default function Home() {
               </div>
               <p className="leading-relaxed text-sm text-gray-300 mb-6">"Super simple throughout the entire process."</p>
               <div className="flex items-center gap-3">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=64&h=64" className="w-10 h-10 object-cover rounded-full" alt="Sarah" />
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sean" alt="Sean B." width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border border-white/10 bg-gray-800" />
                 <div>
                   <div className="text-sm font-medium text-white">Sean B.</div>
                   <div className="text-xs text-gray-500">Pearl Pressure Washing</div>
@@ -1013,7 +1007,7 @@ export default function Home() {
               </div>
               <p className="text-gray-300 mb-6 text-sm leading-relaxed">"Professional, fast, and they actually answer the phone. Most agencies I've worked with ghost you after the sale. The PUSHLY team treats my business like it's their own."</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-900 rounded-full flex items-center justify-center font-bold text-blue-300">MK</div>
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mike" alt="Mike Kowalski" width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border border-white/10 bg-gray-800" />
                 <div>
                   <div className="text-white font-medium text-sm">Mike Kowalski</div>
                   <div className="text-gray-500 text-xs">Kowalski Auto Detailing</div>

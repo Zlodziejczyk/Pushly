@@ -1,9 +1,63 @@
+import { useEffect, useRef } from 'react';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { usePageMeta } from '../hooks/usePageMeta';
+import { useJsonLd } from '../hooks/useJsonLd';
 
+const GET_STARTED_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': 'https://www.pushly.nl/get-started',
+  url: 'https://www.pushly.nl/get-started',
+  name: 'Plan Een Gratis Scan | Pushly',
+  description: 'Boek een vrijblijvend kennismakingsgesprek met Pushly. Geen verkooppraatje, geen verplichtingen — binnen 24 uur reactie.',
+  inLanguage: 'nl-NL',
+  isPartOf: { '@id': 'https://www.pushly.nl/#website' },
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.pushly.nl' },
+      { '@type': 'ListItem', position: 2, name: 'Plan Een Scan', item: 'https://www.pushly.nl/get-started' },
+    ],
+  },
+  potentialAction: {
+    '@type': 'ReserveAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://www.pushly.nl/get-started',
+      actionPlatform: ['https://schema.org/DesktopWebPlatform', 'https://schema.org/MobileWebPlatform'],
+    },
+    result: { '@type': 'Reservation', name: 'Gratis kennismakingsgesprek met Pushly' },
+  },
+};
 
 export default function GetStarted() {
+  usePageMeta({
+    title: 'Plan een Gratis Scan | Pushly',
+    description: 'Boek een vrijblijvend kennismakingsgesprek. Geen verkooppraatje, geen verplichtingen — gewoon eerlijk advies. Binnen 24 uur reactie.',
+    canonical: 'https://www.pushly.nl/get-started',
+  });
+  useJsonLd('get-started-schema', GET_STARTED_SCHEMA);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Resize iframe dynamically via postMessage from LeadConnector widget
+  useEffect(() => {
+    const handleMessage = (e: MessageEvent) => {
+      if (!iframeRef.current) return;
+      // iframe-resizer and LeadConnector both emit height via message
+      const data = e.data;
+      if (typeof data === 'object' && data !== null) {
+        const height = data.height ?? data.iFrameHeight ?? data.frameHeight;
+        if (typeof height === 'number' && height > 200) {
+          iframeRef.current.style.height = `${height}px`;
+        }
+      }
+    };
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
+
   return (
     <main className="flex-grow px-4 md:px-6 pt-28 md:pt-32">
       <div className="max-w-6xl mx-auto">
@@ -93,7 +147,7 @@ export default function GetStarted() {
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-sky-500/30 via-indigo-500/30 to-violet-600/30 rounded-3xl blur-3xl glow-pulse-noscale" aria-hidden="true"></div>
 
-            <div className="relative bg-white rounded-xl overflow-hidden min-h-[600px] flex flex-col shadow-[0_25px_60px_-12px_rgba(0,0,0,0.4)]">
+            <div className="relative bg-white rounded-xl flex flex-col shadow-[0_25px_60px_-12px_rgba(0,0,0,0.4)]" style={{ overflow: 'clip' }}>
               {/* Decorative browser bar mockup */}
               <div className="flex bg-gray-50/80 border-gray-100 border-b pt-3 pr-4 pb-3 pl-4 items-center justify-between" aria-hidden="true">
                 <div className="flex gap-1.5">
@@ -109,8 +163,8 @@ export default function GetStarted() {
               </div>
 
               {/* Booking Embed */}
-              <div className="w-full h-full bg-white relative">
-                <iframe src="https://api.leadconnectorhq.com/widget/booking/wW2s55ou7kRg72xwbSQQ" style={{ width: '100%', height: '801px', minHeight: '600px', border: 'none', overflow: 'auto' }} scrolling="yes" id="dVdV3RVAQIOxs97tERJl_1765144010091" title="Boek een gratis scan met Pushly" data-initial-iframe-hidden="true" data-unique-id-mapped="true" data-iframe-resizer-initialized="true"></iframe>
+              <div className="w-full bg-white relative">
+                <iframe ref={iframeRef} src="https://api.leadconnectorhq.com/widget/booking/wW2s55ou7kRg72xwbSQQ" style={{ width: '100%', height: '801px', border: 'none', overflow: 'auto', display: 'block' }} scrolling="yes" id="dVdV3RVAQIOxs97tERJl_1765144010091" title="Boek een gratis scan met Pushly" data-initial-iframe-hidden="true" data-unique-id-mapped="true" data-iframe-resizer-initialized="true"></iframe>
               </div>
             </div>
           </motion.div>
@@ -220,7 +274,7 @@ export default function GetStarted() {
         <div className="relative">
           <div className="absolute -inset-4 bg-gradient-to-r from-sky-500/30 via-indigo-500/30 to-violet-600/30 rounded-3xl blur-3xl opacity-60 pointer-events-none" aria-hidden="true"></div>
           <div className="relative overflow-x-auto rounded-xl">
-            <div className="min-w-[780px] rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/30" style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(10px)' }}>
+            <div className="min-w-[640px] rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/30" style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(10px)' }}>
               <div className="grid border-b border-white/10 bg-white/[0.02]" style={{ gridTemplateColumns: '3fr 2.5fr 2.5fr 2.5fr' }}>
                 <div className="uppercase text-xs font-medium text-gray-400 tracking-wider font-mono py-5 px-5">Feature</div>
                 <div className="py-5 px-4 text-center"><span className="text-xs font-medium tracking-wider text-gray-300 uppercase font-mono">Pushly Basis</span></div>

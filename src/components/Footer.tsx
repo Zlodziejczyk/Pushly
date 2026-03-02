@@ -7,14 +7,14 @@ export default function Footer() {
         {/* Brand */}
         <div className="col-span-1 md:col-span-2">
           <div className="flex items-center mb-3">
-            <div className="flex items-center space-x-1 mr-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-duration:1s]"></div>
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-duration:1s] [animation-delay:0.2s]"></div>
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-duration:1s] [animation-delay:0.4s]"></div>
+            <div className="flex items-center space-x-1 mr-2" aria-hidden="true">
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-duration:1s] [animation-iteration-count:3]"></div>
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-duration:1s] [animation-delay:0.2s] [animation-iteration-count:3]"></div>
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce [animation-duration:1s] [animation-delay:0.4s] [animation-iteration-count:3]"></div>
             </div>
             <span className="font-bold text-white">Pushly</span>
           </div>
-          <p className="text-gray-500 text-sm max-w-xs">
+          <p className="text-gray-400 text-sm max-w-xs">
             Wij helpen ondernemers groeien. Stap voor stap, meetbaar en eerlijk.
           </p>
         </div>
@@ -22,19 +22,19 @@ export default function Footer() {
         {/* Product Links */}
         <div>
           <h4 className="text-sm font-medium text-white mb-4">Oplossingen</h4>
-          <ul className="space-y-2 text-sm text-gray-500">
+          <ul className="space-y-1 text-sm text-gray-400">
             <li>
-              <Link to="/solutions#websites" className="hover:text-blue-400 transition-colors">
+              <Link to="/solutions#websites" className="block py-2 hover:text-blue-400 transition-colors">
                 Websites &amp; Funnels
               </Link>
             </li>
             <li>
-              <Link to="/solutions#marketing" className="hover:text-blue-400 transition-colors">
+              <Link to="/solutions#marketing" className="block py-2 hover:text-blue-400 transition-colors">
                 Digitale Aanwezigheid &amp; Marketing
               </Link>
             </li>
             <li>
-              <Link to="/solutions#automatisering" className="hover:text-blue-400 transition-colors">
+              <Link to="/solutions#automatisering" className="block py-2 hover:text-blue-400 transition-colors">
                 Automatisering
               </Link>
             </li>
@@ -44,19 +44,24 @@ export default function Footer() {
         {/* Company Links */}
         <div>
           <h4 className="text-white font-medium mb-4 text-sm">Bedrijf</h4>
-          <ul className="space-y-2 text-sm text-gray-500">
+          <ul className="space-y-1 text-sm text-gray-400">
             <li>
-              <Link to="/about" className="hover:text-blue-400 transition-colors">
+              <Link to="/about" className="block py-2 hover:text-blue-400 transition-colors">
                 Over Ons
               </Link>
             </li>
             <li>
-              <Link to="/terms-conditions" className="hover:text-blue-400 transition-colors">
+              <a href="mailto:info@pushly.nl" className="block py-2 hover:text-blue-400 transition-colors">
+                info@pushly.nl
+              </a>
+            </li>
+            <li>
+              <Link to="/terms-conditions" className="block py-2 hover:text-blue-400 transition-colors">
                 Algemene Voorwaarden
               </Link>
             </li>
             <li>
-              <Link to="/privacy-policy" className="hover:text-blue-400 transition-colors">
+              <Link to="/privacy-policy" className="block py-2 hover:text-blue-400 transition-colors">
                 Privacybeleid
               </Link>
             </li>

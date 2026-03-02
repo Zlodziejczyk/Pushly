@@ -1,7 +1,34 @@
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
+import { usePageMeta } from '../hooks/usePageMeta';
+import { useJsonLd } from '../hooks/useJsonLd';
+
+const ABOUT_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  '@id': 'https://www.pushly.nl/about',
+  url: 'https://www.pushly.nl/about',
+  name: 'Over Ons — Pushly',
+  description: 'Pushly helpt lokale servicebedrijven professioneler online te worden en meer klanten aan te trekken zonder extra werk.',
+  inLanguage: 'nl-NL',
+  isPartOf: { '@id': 'https://www.pushly.nl/#website' },
+  about: { '@id': 'https://www.pushly.nl/#organization' },
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.pushly.nl' },
+      { '@type': 'ListItem', position: 2, name: 'Over Ons', item: 'https://www.pushly.nl/about' },
+    ],
+  },
+};
 
 export default function About() {
+  usePageMeta({
+    title: 'Over Ons — Het Team achter Pushly',
+    description: 'Pushly helpt lokale servicebedrijven professioneler online te worden en meer klanten aan te trekken. Transparant, eerlijk en resultaatgericht.',
+    canonical: 'https://www.pushly.nl/about',
+  });
+  useJsonLd('about-schema', ABOUT_SCHEMA);
   return (
     <div className="flex-grow pt-32 pb-24 relative z-10">
       <div className="absolute inset-0 z-0 bg-grid opacity-50"></div>
@@ -55,8 +82,8 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="relative flex items-center justify-center h-full min-h-[400px]"
           >
-            <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full blur-2xl opacity-20 animate-pulse" aria-hidden="true"></div>
+            <div className="relative w-64 h-64 md:w-80 md:h-80" aria-hidden="true">
               <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_50px_rgba(59,130,246,0.3)]">
                 <defs>
                   <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -145,7 +172,7 @@ export default function About() {
         <div className="relative">
           <div className="absolute -inset-4 bg-gradient-to-r from-sky-500/30 via-indigo-500/30 to-violet-600/30 rounded-3xl blur-3xl opacity-60 pointer-events-none" aria-hidden="true"></div>
           <div className="relative overflow-x-auto rounded-xl">
-            <div className="min-w-[780px] rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/30" style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(10px)' }}>
+            <div className="min-w-[640px] rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/30" style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(10px)' }}>
               {/* Table Header */}
               <div className="grid border-b border-white/10 bg-white/[0.02]" style={{ gridTemplateColumns: '3fr 2.5fr 2.5fr 2.5fr' }}>
                 <div className="uppercase text-xs font-medium text-gray-400 tracking-wider font-mono py-5 px-5">Feature</div>
@@ -191,14 +218,14 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Loved by locals.</h2>
-              <p className="text-gray-400 max-w-lg">Local businesses trust us to improve their online presence. Here's what they're saying.</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Wat Onze Klanten Zeggen</h2>
+              <p className="text-gray-400 max-w-lg">Lokale ondernemers vertrouwen op Pushly om hun online aanwezigheid te verbeteren. Dit zeggen zij.</p>
             </div>
             <div className="flex items-center gap-2">
               <div className="flex -space-x-3">
-                <img className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="User" />
-                <img className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64" alt="User" />
-                <img className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&h=64" alt="User" />
+                <img width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="Klant avatar" />
+                <img width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64" alt="Klant avatar" />
+                <img width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&h=64" alt="Klant avatar" />
               </div>
               <div className="text-sm text-gray-400">
                 <span className="text-white font-bold">5.0</span> from 50+ reviews
@@ -207,9 +234,9 @@ export default function About() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { quote: '"From day one the process has been smooth, easy, and honestly stress free."', name: 'Cleanure Laundry', role: 'Owner', avatar: 'CL' },
-              { quote: '"Super simple throughout the entire process."', name: 'Sean B.', role: 'Pearl Pressure Washing', avatar: null, img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=64&h=64' },
-              { quote: '"Professional, fast, and they actually answer the phone. Most agencies I\'ve worked with ghost you after the sale. The PUSHLY team treats my business like it\'s their own."', name: 'Mike Kowalski', role: 'Kowalski Auto Detailing', avatar: 'MK', avatarBg: 'bg-blue-900', avatarColor: 'text-blue-300' },
+              { quote: '"From day one the process has been smooth, easy, and honestly stress free."', name: 'Cleanure Laundry', role: 'Owner', avatarSeed: 'Cleanure' },
+              { quote: '"Super simple throughout the entire process."', name: 'Sean B.', role: 'Pearl Pressure Washing', avatarSeed: 'Sean' },
+              { quote: '"Professional, fast, and they actually answer the phone. Most agencies I\'ve worked with ghost you after the sale. The PUSHLY team treats my business like it\'s their own."', name: 'Mike Kowalski', role: 'Kowalski Auto Detailing', avatarSeed: 'Mike' },
             ].map((review) => (
               <motion.div
                 key={review.name}
@@ -223,11 +250,7 @@ export default function About() {
                 </div>
                 <p className="leading-relaxed text-sm text-gray-300 mb-6">{review.quote}</p>
                 <div className="flex items-center gap-3">
-                  {review.img ? (
-                    <img src={review.img} className="w-10 h-10 object-cover rounded-full" alt={review.name} />
-                  ) : (
-                    <div className={`w-10 h-10 ${review.avatarBg || 'bg-gray-800'} rounded-full flex items-center justify-center font-bold ${review.avatarColor || 'text-gray-400'}`}>{review.avatar}</div>
-                  )}
+                  <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${review.avatarSeed}`} alt={review.name} width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border border-white/10 bg-gray-800" />
                   <div>
                     <div className="text-sm font-medium text-white">{review.name}</div>
                     <div className="text-xs text-gray-500">{review.role}</div>
