@@ -61,7 +61,7 @@ export default function About() {
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-gray-300">
                   <Icon icon="solar:check-circle-bold" className="w-5 h-5 text-yellow-500" />
-                  <span>Gebouwd voor servicebedrijven van elke omvang</span>
+                  <span>Gebouwd voor bedrijven van elke omvang</span>
                 </li>
                 <li className="flex items-center gap-3 text-gray-300">
                   <Icon icon="solar:check-circle-bold" className="w-5 h-5 text-yellow-500" />
