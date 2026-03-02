@@ -45,13 +45,19 @@ export default function GetStarted() {
   useEffect(() => {
     const handleMessage = (e: MessageEvent) => {
       if (!iframeRef.current) return;
-      // iframe-resizer and LeadConnector both emit height via message
       const data = e.data;
-      if (typeof data === 'object' && data !== null) {
-        const height = data.height ?? data.iFrameHeight ?? data.frameHeight;
-        if (typeof height === 'number' && height > 200) {
-          iframeRef.current.style.height = `${height}px`;
-        }
+      if (typeof data !== 'object' || data === null) return;
+
+      // Block GHL scroll-to-parent requests — these cause the page to jump
+      // when the user clicks a date inside the calendar widget.
+      if (data.action === 'scroll') return;
+
+      // Handle height from various GHL / iframe-resizer message shapes.
+      // Threshold is 100 (not 200) so the post-booking confirmation screen
+      // (which is shorter) also triggers a resize.
+      const height = data.height ?? data.iFrameHeight ?? data.frameHeight;
+      if (typeof height === 'number' && height > 100) {
+        iframeRef.current.style.height = `${height}px`;
       }
     };
     window.addEventListener('message', handleMessage);
@@ -144,10 +150,11 @@ export default function GetStarted() {
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="relative"
+            style={{ willChange: 'transform' }}
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-sky-500/30 via-indigo-500/30 to-violet-600/30 rounded-3xl blur-3xl glow-pulse-noscale" aria-hidden="true"></div>
 
-            <div className="relative bg-white rounded-xl flex flex-col shadow-[0_25px_60px_-12px_rgba(0,0,0,0.4)]" style={{ overflow: 'clip' }}>
+            <div className="relative bg-white rounded-xl flex flex-col shadow-[0_25px_60px_-12px_rgba(0,0,0,0.4)]" style={{ overflow: 'hidden', willChange: 'transform', backfaceVisibility: 'hidden' }}>
               {/* Decorative browser bar mockup */}
               <div className="flex bg-gray-50/80 border-gray-100 border-b pt-3 pr-4 pb-3 pl-4 items-center justify-between" aria-hidden="true">
                 <div className="flex gap-1.5">
@@ -164,7 +171,7 @@ export default function GetStarted() {
 
               {/* Booking Embed */}
               <div className="w-full bg-white relative">
-                <iframe ref={iframeRef} src="https://api.leadconnectorhq.com/widget/booking/wW2s55ou7kRg72xwbSQQ" style={{ width: '100%', height: '801px', border: 'none', overflow: 'auto', display: 'block' }} scrolling="yes" id="dVdV3RVAQIOxs97tERJl_1765144010091" title="Boek een gratis scan met Pushly" data-initial-iframe-hidden="true" data-unique-id-mapped="true" data-iframe-resizer-initialized="true"></iframe>
+                <iframe ref={iframeRef} src="https://api.leadconnectorhq.com/widget/booking/wW2s55ou7kRg72xwbSQQ" style={{ width: '100%', height: '801px', border: 'none', display: 'block' }} scrolling="no" id="dVdV3RVAQIOxs97tERJl_1765144010091" title="Boek een gratis scan met Pushly" data-initial-iframe-hidden="true" data-unique-id-mapped="true" data-iframe-resizer-initialized="true"></iframe>
               </div>
             </div>
           </motion.div>
