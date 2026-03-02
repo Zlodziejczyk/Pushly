@@ -42,18 +42,18 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-blue-400 font-semibold tracking-widest text-xs uppercase mb-4 block">Meet The Team</span>
+            <span className="text-blue-400 font-semibold tracking-widest text-xs uppercase mb-4 block">Ontmoet Het Team</span>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-white mb-8 leading-[1.1]">
-              Hey, We're <br />
+              Hey, Wij zijn <br />
               <span className="text-gray-500">PUSHLY.</span>
             </h1>
 
             <div className="space-y-6 text-lg text-gray-400 leading-relaxed">
               <p>
-                Pushly was created to help service businesses look more professional online and attract more customers without doing extra work. Our mission is simple: build the three tools every business needs to win today — a strong website, great reviews, and a fully optimized Google Business Profile.
+                Pushly is opgericht om lokale servicebedrijven te helpen professioneler online te verschijnen en meer klanten aan te trekken, zonder extra moeite te hoeven doen. Onze missie is simpel: de drie tools bouwen die elk bedrijf vandaag de dag nodig heeft om te winnen — een sterke website, geweldige reviews en een volledig geoptimaliseerd Google Bedrijfsprofiel.
               </p>
               <p>
-                We focus on clarity, honesty, and real results. Whether you're just starting out or leveling up your online presence, we’re here to give you a clean, modern system that supports your growth every day.
+                We focussen op duidelijkheid, eerlijkheid en echte resultaten. Of je nu net begint of je online aanwezigheid naar een hoger niveau wilt tillen, we zijn er om je een helder, modern systeem te geven dat jouw groei elke dag ondersteunt.
               </p>
             </div>
 
@@ -61,15 +61,15 @@ export default function About() {
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-gray-300">
                   <Icon icon="solar:check-circle-bold" className="w-5 h-5 text-yellow-500" />
-                  <span>Built for service businesses of all sizes</span>
+                  <span>Gebouwd voor servicebedrijven van elke omvang</span>
                 </li>
                 <li className="flex items-center gap-3 text-gray-300">
                   <Icon icon="solar:check-circle-bold" className="w-5 h-5 text-yellow-500" />
-                  <span>Transparent, reliable, and easy to work with</span>
+                  <span>Transparant, betrouwbaar en makkelijk om mee te werken</span>
                 </li>
                 <li className="flex items-center gap-3 text-gray-300">
                   <Icon icon="solar:check-circle-bold" className="w-5 h-5 text-yellow-500" />
-                  <span>Focused on results that actually matter</span>
+                  <span>Gefocust op resultaten die er echt toe doen</span>
                 </li>
               </ul>
             </div>
@@ -121,9 +121,9 @@ export default function About() {
               <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-colors">
                 <Icon icon="solar:hand-shake-linear" className="text-blue-400 w-6 h-6" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Our Commitment</h3>
+              <h3 className="text-xl font-semibold text-white mb-3">Onze Toewijding</h3>
               <p className="text-gray-400 leading-relaxed text-sm">
-                We don't just build websites; we build assets that appreciate. We view every client as a long-term partner, not a transactional project.
+                We bouwen niet zomaar websites; we bouwen digitale assets die in waarde stijgen. We zien elke klant als een langdurige partner, niet als een eenmalig project.
               </p>
             </motion.div>
 
@@ -137,9 +137,9 @@ export default function About() {
               <div className="w-12 h-12 bg-yellow-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-yellow-500/20 transition-colors">
                 <Icon icon="solar:bolt-linear" className="text-yellow-400 w-6 h-6" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-3">What Drives Us</h3>
+              <h3 className="text-xl font-semibold text-white mb-3">Onze Drijfveer</h3>
               <p className="text-gray-400 leading-relaxed text-sm">
-                Seeing local businesses outrank national chains. We believe the "little guy" deserves the same enterprise-grade technology.
+                Het zien van lokale bedrijven die nationale concurrenten verslaan in Google. Wij geloven dat de "kleine speler" recht heeft op dezelfde enterprise-grade technologie.
               </p>
             </motion.div>
 
@@ -153,9 +153,9 @@ export default function About() {
               <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-green-500/20 transition-colors">
                 <Icon icon="solar:chart-2-linear" className="text-green-400 w-6 h-6" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Why Choose Us</h3>
+              <h3 className="text-xl font-semibold text-white mb-3">Strak & Transparant</h3>
               <p className="text-gray-400 leading-relaxed text-sm">
-                No fluff. No confusing jargon. No hidden fees. Just a clean, powerful growth system that works while you sleep.
+                Geen blabla. Geen verwarrend vakjargon. Geen verborgen kosten. Alleen een helder, krachtig groeisysteem dat voor jou werkt terwijl jij slaapt.
               </p>
             </motion.div>
           </div>
@@ -228,15 +228,15 @@ export default function About() {
                 <img width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border-2 border-gray-950" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&h=64" alt="Klant avatar" />
               </div>
               <div className="text-sm text-gray-400">
-                <span className="text-white font-bold">5.0</span> from 50+ reviews
+                <span className="text-white font-bold">5.0</span> van de 50+ reviews
               </div>
             </div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { quote: '"From day one the process has been smooth, easy, and honestly stress free."', name: 'Cleanure Laundry', role: 'Owner', avatarSeed: 'Cleanure' },
-              { quote: '"Super simple throughout the entire process."', name: 'Sean B.', role: 'Pearl Pressure Washing', avatarSeed: 'Sean' },
-              { quote: '"Professional, fast, and they actually answer the phone. Most agencies I\'ve worked with ghost you after the sale. The PUSHLY team treats my business like it\'s their own."', name: 'Mike Kowalski', role: 'Kowalski Auto Detailing', avatarSeed: 'Mike' },
+              { quote: '"Vanaf dag één is het proces soepel, eenvoudig en eerlijk gezegd compleet stressvrij verlopen."', name: 'Cleanure Laundry', role: 'Eigenaar', avatarSeed: 'Cleanure' },
+              { quote: '"Een super simpel proces van begin tot eind."', name: 'Sean B.', role: 'Pearl Pressure Washing', avatarSeed: 'Sean' },
+              { quote: '"Professioneel, snel, en ze nemen daadwerkelijk de telefoon op. De meeste bureaus reageren nergens meer op na de verkoop. Het PUSHLY team behandelt mijn bedrijf alsof het hun eigen bedrijf is."', name: 'Mike Kowalski', role: 'Kowalski Auto Detailing', avatarSeed: 'Mike' },
             ].map((review) => (
               <motion.div
                 key={review.name}
@@ -268,14 +268,14 @@ export default function About() {
           <div className="bg-gray-950/80 backdrop-blur-sm border border-white/5 rounded-3xl p-8 md:p-16 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
             <div className="text-center mb-12 relative z-10">
-              <h2 className="text-3xl font-semibold text-white tracking-tight mb-4">Common Questions</h2>
-              <p className="text-gray-400">Everything you need to know about working with us.</p>
+              <h2 className="text-3xl font-semibold text-white tracking-tight mb-4">Veelgestelde Vragen</h2>
+              <p className="text-gray-400">Alles wat je moet weten over de samenwerking met ons.</p>
             </div>
             <div className="space-y-3 relative z-10">
               {[
-                { q: 'Why should I choose Pushly over a big agency?', a: 'Big agencies are slow and expensive. We specialize in fast turnaround, local-focused results, and hands-on support. You get direct access to the people actually doing the work.' },
-                { q: 'What kind of businesses do you work with?', a: 'We partner with service-based businesses that rely on local customers — contractors, home services, med spas, real estate pros, auto shops, and more. If people search for you on Google, we can help you win more of those searches.' },
-                { q: 'Do I have to sign a long-term contract?', a: 'We offer both monthly and annual plans. We believe in earning your business every month, so we don\'t lock you into multi-year contracts you can\'t get out of.' },
+                { q: 'Waarom zou ik voor Pushly kiezen in plaats van een groot bureau?', a: 'Grote bureaus zijn traag en duur. Wij zijn gespecialiseerd in een snelle oplevering, lokaal gerichte resultaten en hands-on support. Je krijgt direct contact met de mensen die het werk daadwerkelijk uitvoeren.' },
+                { q: 'Met wat voor soort bedrijven werken jullie samen?', a: 'We werken samen met servicegerichte bedrijven die afhankelijk zijn van lokale klanten — aannemers, thuisservices, medische spa\'s, makelaars, autogarages en meer. Als mensen naar je zoeken op Google, kunnen wij je helpen om vaker gevonden te worden.' },
+                { q: 'Zit ik vast aan een langdurig contract?', a: 'We bieden zowel maandelijkse als jaarlijkse plannen aan. We geloven dat we jouw klandizie elke maand opnieuw moeten verdienen, dus we binden je niet aan meerjarige contracten waar je niet onderuit kunt.' },
               ].map((faq) => (
                 <details key={faq.q} className="group bg-gray-900/50 border border-white/5 rounded-lg overflow-hidden">
                   <summary className="flex cursor-pointer hover:bg-white/5 transition-colors select-none font-medium text-white p-4 items-center justify-between list-none [&::-webkit-details-marker]:hidden">
