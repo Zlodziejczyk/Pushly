@@ -41,27 +41,56 @@ export default function GetStarted() {
   useJsonLd('get-started-schema', GET_STARTED_SCHEMA);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // Resize iframe dynamically via postMessage from LeadConnector widget
   useEffect(() => {
+    // ── postMessage handler ──────────────────────────────────────────────
+    // GHL sends scroll requests in several different message shapes.
+    // Block all of them so the parent page never scrolls on widget steps.
     const handleMessage = (e: MessageEvent) => {
       if (!iframeRef.current) return;
       const data = e.data;
+
+      if (typeof data === 'string') {
+        if (data.toLowerCase().includes('scroll')) return;
+        return;
+      }
       if (typeof data !== 'object' || data === null) return;
 
-      // Block GHL scroll-to-parent requests — these cause the page to jump
-      // when the user clicks a date inside the calendar widget.
-      if (data.action === 'scroll') return;
+      // Block every known GHL scroll-to-parent format.
+      if (
+        data.action === 'scroll' ||
+        data.type === 'scroll' ||
+        data.scrollTo !== undefined ||
+        data.scrollTop !== undefined
+      ) return;
 
-      // Handle height from various GHL / iframe-resizer message shapes.
-      // Threshold is 100 (not 200) so the post-booking confirmation screen
-      // (which is shorter) also triggers a resize.
+      // Resize — lower threshold (100) catches the post-booking screen too.
       const height = data.height ?? data.iFrameHeight ?? data.frameHeight;
       if (typeof height === 'number' && height > 100) {
         iframeRef.current.style.height = `${height}px`;
       }
     };
+
+    // ── Focus-change scroll canceller ────────────────────────────────────
+    // When the user clicks inside the iframe the window loses focus.
+    // The browser may then natively scroll the parent to bring the newly
+    // focused iframe element into view.  We snapshot scroll position on
+    // blur and, if it shifted more than 10 px by the next paint, snap it
+    // back instantly.
+    const cancelFocusScroll = () => {
+      const saved = window.scrollY;
+      requestAnimationFrame(() => {
+        if (Math.abs(window.scrollY - saved) > 10) {
+          window.scrollTo({ top: saved, behavior: 'instant' as ScrollBehavior });
+        }
+      });
+    };
+
     window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
+    window.addEventListener('blur', cancelFocusScroll);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+      window.removeEventListener('blur', cancelFocusScroll);
+    };
   }, []);
 
   return (
@@ -154,7 +183,7 @@ export default function GetStarted() {
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-sky-500/30 via-indigo-500/30 to-violet-600/30 rounded-3xl blur-3xl glow-pulse-noscale" aria-hidden="true"></div>
 
-            <div className="relative bg-white rounded-xl flex flex-col shadow-[0_25px_60px_-12px_rgba(0,0,0,0.4)]" style={{ overflow: 'hidden', willChange: 'transform', backfaceVisibility: 'hidden' }}>
+            <div className="relative bg-white rounded-xl flex flex-col shadow-[0_25px_60px_-12px_rgba(0,0,0,0.4)]" style={{ overflow: 'hidden', transform: 'translateZ(0)' }}>
               {/* Decorative browser bar mockup */}
               <div className="flex bg-gray-50/80 border-gray-100 border-b pt-3 pr-4 pb-3 pl-4 items-center justify-between" aria-hidden="true">
                 <div className="flex gap-1.5">
@@ -171,7 +200,7 @@ export default function GetStarted() {
 
               {/* Booking Embed */}
               <div className="w-full bg-white relative">
-                <iframe ref={iframeRef} src="https://api.leadconnectorhq.com/widget/booking/wW2s55ou7kRg72xwbSQQ" style={{ width: '100%', height: '801px', border: 'none', display: 'block' }} scrolling="no" id="dVdV3RVAQIOxs97tERJl_1765144010091" title="Boek een gratis scan met Pushly" data-initial-iframe-hidden="true" data-unique-id-mapped="true" data-iframe-resizer-initialized="true"></iframe>
+                <iframe ref={iframeRef} src="https://api.leadconnectorhq.com/widget/booking/wW2s55ou7kRg72xwbSQQ" style={{ width: '100%', height: '801px', border: 'none', display: 'block' }} scrolling="yes" id="dVdV3RVAQIOxs97tERJl_1765144010091" title="Boek een gratis scan met Pushly" data-initial-iframe-hidden="true" data-unique-id-mapped="true" data-iframe-resizer-initialized="true"></iframe>
               </div>
             </div>
           </motion.div>
