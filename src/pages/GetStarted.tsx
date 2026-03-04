@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, Fragment } from 'react';
+import { useState, Fragment } from 'react';
 import { Icon } from '@iconify/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -98,64 +98,12 @@ export default function GetStarted() {
   });
   useJsonLd('get-started-schema', GET_STARTED_SCHEMA);
 
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
   const [step, setStep]               = useState(1);
   const [data, setData]               = useState<FormData>(INIT);
   const [errors, setErrors]           = useState<Set<string>>(new Set());
   const [submitting, setSubmitting]   = useState(false);
   const [submitted, setSubmitted]     = useState(false);
   const [submitError, setSubmitError] = useState('');
-
-  // Scroll-prevention logic — only active once the calendar iframe is visible
-  useEffect(() => {
-    if (!submitted) return;
-
-    const handleMessage = (e: MessageEvent) => {
-      const d = e.data;
-      const isScroll =
-        (typeof d === 'object' && d !== null && (
-          d.action === 'scroll' || d.type === 'scroll' ||
-          d.scrollTo !== undefined || d.scrollTop !== undefined
-        )) ||
-        (typeof d === 'string' && d.toLowerCase().includes('scroll'));
-      if (isScroll) e.stopImmediatePropagation();
-    };
-    window.addEventListener('message', handleMessage);
-
-    const EMBED_SRC = 'https://link.msgsndr.com/js/form_embed.js';
-    let script: HTMLScriptElement | null = null;
-    if (!document.querySelector(`script[src="${EMBED_SRC}"]`)) {
-      script = document.createElement('script');
-      script.src = EMBED_SRC;
-      script.async = true;
-      document.body.appendChild(script);
-    }
-
-    const mo = new MutationObserver(() => {
-      const savedY = window.scrollY;
-      requestAnimationFrame(() => {
-        if (Math.abs(window.scrollY - savedY) > 5)
-          window.scrollTo({ top: savedY, behavior: 'instant' as ScrollBehavior });
-      });
-    });
-    if (iframeRef.current) mo.observe(iframeRef.current, { attributes: true, attributeFilter: ['style'] });
-
-    const cancelFocusScroll = () => {
-      const saved = window.scrollY;
-      const block = () => window.scrollTo({ top: saved, behavior: 'instant' as ScrollBehavior });
-      window.addEventListener('scroll', block, { passive: true });
-      setTimeout(() => window.removeEventListener('scroll', block), 300);
-    };
-    window.addEventListener('blur', cancelFocusScroll);
-
-    return () => {
-      window.removeEventListener('message', handleMessage);
-      window.removeEventListener('blur', cancelFocusScroll);
-      mo.disconnect();
-      if (script && document.body.contains(script)) document.body.removeChild(script);
-    };
-  }, [submitted]);
 
   // ─── Helpers ──────────────────────────────────────────────────────────────
 
@@ -312,37 +260,51 @@ export default function GetStarted() {
 
             <AnimatePresence mode="wait">
               {submitted ? (
-                /* ── Calendar ── */
+                /* ── Confirmation ── */
                 <motion.div
-                  key="calendar"
+                  key="confirmation"
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.35, ease: 'easeOut' }}
-                  className="relative bg-white rounded-xl flex flex-col shadow-[0_25px_60px_-12px_rgba(0,0,0,0.4)]"
-                  style={{ overflow: 'hidden', transform: 'translateZ(0)' }}
+                  className="relative rounded-2xl border border-white/10 shadow-[0_25px_60px_-12px_rgba(0,0,0,0.4)]"
+                  style={{ background: 'rgba(17,24,39,0.9)', backdropFilter: 'blur(16px)' }}
                 >
-                  <div className="flex bg-gray-50/80 border-gray-100 border-b pt-3 pr-4 pb-3 pl-4 items-center justify-between" aria-hidden="true">
-                    <div className="flex gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-400/80 border border-red-500/20" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-amber-400/80 border border-amber-500/20" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-400/80 border border-green-500/20" />
+                  <div className="p-8 lg:p-10 text-center">
+                    {/* Success icon */}
+                    <div className="mx-auto w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-6">
+                      <Icon icon="solar:check-circle-bold" width="32" height="32" className="text-emerald-400" />
                     </div>
-                    <div className="flex items-center gap-1.5 bg-white border border-gray-200 rounded-md px-2.5 py-1 shadow-sm">
-                      <Icon icon="solar:lock-keyhole-linear" width="12" height="12" className="text-green-500" />
-                      <span className="text-xs text-gray-500 font-mono tracking-tight">pushly.nl/get-started</span>
+
+                    <h2 className="text-2xl font-semibold text-white mb-3">Bedankt, {data.firstName}!</h2>
+                    <p className="text-gray-400 text-base leading-relaxed max-w-sm mx-auto mb-8">
+                      We hebben je aanvraag ontvangen. Je ontvangt binnen een paar minuten een <span className="text-white font-medium">e-mail en SMS</span> met een link om direct een gesprek in te plannen.
+                    </p>
+
+                    {/* What happens next */}
+                    <div className="text-left space-y-4 mb-8">
+                      <p className="text-sky-400 text-xs font-medium uppercase tracking-widest font-mono">Wat er nu gebeurt</p>
+                      {[
+                        { icon: 'solar:letter-linear', text: 'Check je inbox — we sturen een boekingslink naar ' + data.email },
+                        { icon: 'solar:smartphone-linear', text: 'Ook per SMS naar ' + data.phone },
+                        { icon: 'solar:calendar-linear', text: 'Kies een moment dat jou uitkomt — 20 min kennismaking' },
+                      ].map(({ icon, text }) => (
+                        <div key={icon} className="flex items-start gap-3">
+                          <Icon icon={icon} width="18" height="18" className="text-sky-400 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-gray-300">{text}</span>
+                        </div>
+                      ))}
                     </div>
-                    <div className="w-4" />
-                  </div>
-                  <div className="w-full bg-white relative">
-                    <iframe
-                      ref={iframeRef}
-                      src="https://api.leadconnectorhq.com/widget/booking/wW2s55ou7kRg72xwbSQQ"
-                      style={{ width: '100%', height: '801px', border: 'none', display: 'block' }}
-                      scrolling="no"
-                      id="dVdV3RVAQIOxs97tERJl_1765144010091"
-                      title="Boek een gratis scan met Pushly"
-                      data-initial-iframe-hidden="true"
-                    />
+
+                    {/* Fallback contact */}
+                    <div className="pt-6 border-t border-white/5">
+                      <p className="text-xs text-gray-500">
+                        Geen e-mail ontvangen? Check je spam of bel ons direct:
+                      </p>
+                      <a href="tel:+31684474399" className="inline-flex items-center gap-2 mt-2 text-sm text-sky-400 hover:text-sky-300 transition-colors">
+                        <Icon icon="solar:phone-linear" width="14" height="14" />
+                        +31 6 8447 4399
+                      </a>
+                    </div>
                   </div>
                 </motion.div>
               ) : (

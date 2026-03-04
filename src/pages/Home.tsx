@@ -27,20 +27,14 @@ const HOME_SCHEMA = {
     {
       '@type': 'Review',
       reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Organization', name: 'Cleanure Laundry' },
-      reviewBody: 'From day one the process has been smooth, easy, and honestly stress free.',
+      author: { '@type': 'Person', name: 'Kasia' },
+      reviewBody: 'Pushly regelt al onze social advertising — van campagnes tot aan de creatives. Ze snappen onze stijl en bereiken precies de juiste mensen. Dankzij hun aanpak zien we duidelijk meer nieuwe klanten binnenkomen.',
     },
     {
       '@type': 'Review',
       reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'Sean B.' },
-      reviewBody: 'Super simple throughout the entire process.',
-    },
-    {
-      '@type': 'Review',
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'Mike Kowalski' },
-      reviewBody: 'Professional, fast, and they actually answer the phone. Most agencies I\'ve worked with ghost you after the sale. The PUSHLY team treats my business like it\'s their own.',
+      author: { '@type': 'Organization', name: 'King Protein' },
+      reviewBody: 'Pushly heeft onze webshop opgepakt, SEO doorgevoerd en AI-koppelingen gebouwd die ons contentbeheer automatiseren. Daarnaast lopen de advertentiecampagnes en zien we het verschil direct in de omzet. Een echte alles-in-één partner.',
     },
   ],
 };
@@ -939,8 +933,8 @@ export default function Home() {
             </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Review 1 */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {/* Review — Yankeetattooz */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -955,17 +949,17 @@ export default function Home() {
                 <Icon icon="solar:star-bold" className="w-4 h-4" />
                 <Icon icon="solar:star-bold" className="w-4 h-4" />
               </div>
-              <p className="leading-relaxed text-sm text-gray-300 mb-6">"From day one the process has been smooth, easy, and honestly stress free."</p>
+              <p className="leading-relaxed text-sm text-gray-300 mb-6">"Pushly regelt al onze social advertising — van campagnes tot aan de creatives. Ze snappen onze stijl en bereiken precies de juiste mensen. Dankzij hun aanpak zien we duidelijk meer nieuwe klanten binnenkomen."</p>
               <div className="flex items-center gap-3">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Cleanure" alt="Cleanure Laundry" width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border border-white/10 bg-gray-800" />
+                <img src="/favicons/yankeetattooz.png" alt="Yankeetattooz" width="40" height="40" loading="lazy" className="w-10 h-10 rounded-xl border border-white/10 bg-white object-contain p-1 flex-shrink-0" />
                 <div>
-                  <div className="text-sm font-medium text-white">Cleanure Laundry</div>
-                  <div className="text-xs text-gray-500">Owner</div>
+                  <div className="text-sm font-medium text-white">Kasia</div>
+                  <div className="text-xs text-gray-500">Yankeetattooz — Schiedam</div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Review 2 */}
+            {/* Review — King Protein */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -980,37 +974,12 @@ export default function Home() {
                 <Icon icon="solar:star-bold" className="w-4 h-4" />
                 <Icon icon="solar:star-bold" className="w-4 h-4" />
               </div>
-              <p className="leading-relaxed text-sm text-gray-300 mb-6">"Super simple throughout the entire process."</p>
+              <p className="leading-relaxed text-sm text-gray-300 mb-6">"Pushly heeft onze webshop opgepakt, SEO doorgevoerd en AI-koppelingen gebouwd die ons contentbeheer automatiseren. Daarnaast lopen de advertentiecampagnes en zien we het verschil direct in de omzet. Een echte alles-in-één partner."</p>
               <div className="flex items-center gap-3">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sean" alt="Sean B." width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border border-white/10 bg-gray-800" />
+                <img src="/favicons/king-protein.png" alt="King Protein" width="40" height="40" loading="lazy" className="w-10 h-10 rounded-xl border border-white/10 bg-white object-contain p-1 flex-shrink-0" />
                 <div>
-                  <div className="text-sm font-medium text-white">Sean B.</div>
-                  <div className="text-xs text-gray-500">Pearl Pressure Washing</div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Review 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="glass-card rounded-xl p-6"
-            >
-              <div className="flex gap-1 text-yellow-400 mb-4">
-                <Icon icon="solar:star-bold" className="w-4 h-4" />
-                <Icon icon="solar:star-bold" className="w-4 h-4" />
-                <Icon icon="solar:star-bold" className="w-4 h-4" />
-                <Icon icon="solar:star-bold" className="w-4 h-4" />
-                <Icon icon="solar:star-bold" className="w-4 h-4" />
-              </div>
-              <p className="text-gray-300 mb-6 text-sm leading-relaxed">"Professional, fast, and they actually answer the phone. Most agencies I've worked with ghost you after the sale. The PUSHLY team treats my business like it's their own."</p>
-              <div className="flex items-center gap-3">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mike" alt="Mike Kowalski" width="40" height="40" loading="lazy" className="w-10 h-10 rounded-full border border-white/10 bg-gray-800" />
-                <div>
-                  <div className="text-white font-medium text-sm">Mike Kowalski</div>
-                  <div className="text-gray-500 text-xs">Kowalski Auto Detailing</div>
+                  <div className="text-sm font-medium text-white">Eigenaar</div>
+                  <div className="text-xs text-gray-500">King-protein.nl</div>
                 </div>
               </div>
             </motion.div>
